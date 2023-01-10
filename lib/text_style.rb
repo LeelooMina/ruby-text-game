@@ -11,7 +11,7 @@ class String
         "\e[32m#{self}\e[0m" 
     end
     
-    def brown;          
+    def yellow;          
         "\e[33m#{self}\e[0m" 
     end
     
