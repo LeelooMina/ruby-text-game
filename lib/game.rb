@@ -1,4 +1,5 @@
-
+require './lib/slow_text.rb'
+require './lib/character.rb'
 
 ## Welcome text
 
@@ -18,28 +19,46 @@ __        __   _                            _          ____        _
 BIG_TEXT
 
 puts
-puts "Ruby Kingdon is a simple text-based game built in Ruby"
-puts "Find me on Github @leeloomina"
+puts
+slow_text do
+    "Ruby Kingdon is a simple text-based game built in ".cyan + "Ruby".red
+end
+
+slow_text do
+    "Find me on Github @leeloomina".green
+end
 puts
 puts
 
-
+sleep 1
 ## Char name, class, etc
 
-puts "What will your name be?"
+slow_text(0.03) do
+     "What will your name be?"
+end
 char_name = gets.chomp
+puts
 
 sleep 2
 
-puts "Oh.".red.bold
-
+puts "Oh.".yellow.bold
+puts
 sleep 1
-puts "Okay.".green.bold
+puts "#{char_name}?".red.bold.italic
+puts
 sleep 1
-puts "I hope that isn't your real name.".gray.italic
+slow_text(0.1) do
+    "Okay.".green.bold
+end
+puts
+sleep 1
+slow_text(0.03) do
+    "Well, you can't change it now."
+end
 
 sleep 3
 
+#Loop until correct input
 puts <<-'CLASS_TEXT'
 
 Pick a class:
@@ -48,8 +67,19 @@ Pick a class:
     3. Programmer
 
 CLASS_TEXT
+char_class = gets.chomp
+
+class_checker(char_class)
+
+## Test class number or string
+## Snarky if number "You couldn't even type out the whole word?"
+## Spelled out - "Why didn't you just type the number?"
+## Misspelled or other entries "Uh.. Maybe you need to try this again"
+
+## Add class to character instance
 
 ## Joke text
+## "You are random_name, a class_name in Ruby Kingdom."
 
 ## Show map
 
