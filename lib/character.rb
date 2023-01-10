@@ -1,3 +1,6 @@
+require './lib/slow_text.rb'
+
+
 class Character
 
     attr_accessor :char_name
@@ -12,10 +15,11 @@ class Character
 
     @char_name = "Oops"
     @char_class = "Warrior"
-    @char_HP = 100
+    @char_hp = 100
     @char_inventory = []
     @char_level = 0
-    @char_EXP = 0
+    @char_exp = 0
+    @next_level_exp = 10
     @char_alive = true
     @char_equipped_weapon = "Sword"
     @char_location_x = 0
@@ -39,9 +43,9 @@ end
 
 def change_hp(hp_amount, gain_or_loss)
     if gain_or_loss == "gain"
-        $char_HP = $char_HP + hp_amount
+        $char_hp = $char_hp + hp_amount
     elsif gain_or_loss == "loss"
-        $char_HP = $char_HP - hp_amount
+        $char_hp = $char_hp - hp_amount
     end
 
     check_status
@@ -49,9 +53,9 @@ def change_hp(hp_amount, gain_or_loss)
 end
 
 def check_status
-    if char_HP <= 0
+    if $char_hp <= 0
         $char_alive = false
-    elsif char_HP < 0
+    elsif $char_hp < 0
         $char_alive = true
     end
 end
@@ -70,15 +74,15 @@ end
 
 def add_to_inventory(new_item)
     @char_inventory.push(new_item)
+    puts "You got a #{new_item}! Don't lose it!".green
 end
+
+
 
 def change_weapon(new_weapon)
     @char_equipped_weapon = new_weapon
 end
 
-# add_to_inventory("chicken")
-# @char_inventory = fill_inventoy("Mage")
-# puts @char_inventory
 
 def class_weapon(char_class)
     if char_class == $char_classes[0]
@@ -90,12 +94,36 @@ def class_weapon(char_class)
     end
 end
 
-# fill_inventoy("Warrior")
-
 ## EXP
+
+def add_exp(exp_amt)
+    @char_exp += exp_amt
+    level_up_check
+end
+
+def level_up_check
+    if @char_exp == @next_level_exp
+        level_up
+    end
+end
 
 ## Level
 
+def level_up
+    @char_level += 1
+    puts "You leveled up!".green
+    @next_level_exp += 5
+end
+
+## Map Location
+
+
+
+
+
+
+
+end
 
 
 
