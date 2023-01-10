@@ -7,10 +7,3 @@ $char_classes = [
 
 
 
-def class_checker(class_input = "chicken")
-    if $char_classes.include?(class_input.downcase.capitalize())
-
-    end
-end
-
-class_checker("Warrior")

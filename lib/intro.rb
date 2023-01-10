@@ -1,5 +1,15 @@
 require './lib/slow_text.rb'
 require './lib/character.rb'
+require './lib/console_prompt.rb'
+
+
+def class_checker(class_input = "chicken")
+    if $char_classes.include?(class_input.downcase.capitalize())
+        true
+    else
+        false
+   end
+end
 
 ## Welcome text
 
@@ -69,7 +79,48 @@ Pick a class:
 CLASS_TEXT
 char_class = gets.chomp
 
-class_checker(char_class)
+ch_cl = false
+
+while ch_cl == false
+    puts <<-'CLASS_TEXT'
+
+Pick a class:
+    1. Warrior
+    2. Mage
+    3. Programmer
+
+CLASS_TEXT
+char_class = gets.chomp
+
+# Check user input against avaiable classes
+
+if $char_classes.include?(char_class.downcase.capitalize())
+    puts "Add class to char"
+    ch_cl = true
+elsif char_class.to_i >= 4
+    puts "Can you count to 3?"
+    ch_cl = false
+
+elsif char_class.to_i == 1
+    puts "A warrior? So orginal"
+    ch_cl = true
+
+elsif char_class.to_i == 2
+    puts "A mage? Lame"
+    ch_cl = true
+
+elsif char_class.to_i == 3
+    puts "You're playing a game called Ruby Kingdom AND you wanna be a programmer? Weird."
+    ch_cl = true
+else
+    puts "Really? Let's try this again".slow_text
+    ch_cl = false
+
+end
+
+end
+
+puts "Char input works"
 
 ## Test class number or string
 ## Snarky if number "You couldn't even type out the whole word?"
