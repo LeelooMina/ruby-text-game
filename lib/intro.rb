@@ -12,6 +12,8 @@ $programmer_text_2 = "What are you even going to fight with?"
 
 $number_input_text = "You couldn't even type out the whole word?"
 $word_input_text = "Why didn't you just type the number?"
+$mistake_text = "Really?"
+$mistake_text_2 = "Let's try this again.."
 
 ## Welcome text
 
@@ -32,7 +34,7 @@ BIG_TEXT
 puts
 puts
 slow_text do
-  "Ruby Kingdon is a simple text-based game built in ".cyan + "Ruby".red
+  "Ruby Kingdom is a simple text-based game built in ".cyan + "Ruby".red
 end
 
 slow_text do
@@ -92,7 +94,9 @@ CLASS_TEXT
   sleep 2
 
   if $char_classes.include?(char_class.downcase.capitalize())
-    puts $word_input_text
+    slow_text do
+         $word_input_text
+    end
     ch_cl = true
 
     case char_class.downcase.capitalize()
@@ -130,18 +134,16 @@ CLASS_TEXT
     char_class = $char_classes[0]
     ch_cl = true
   elsif char_class.to_i == 2
+  
     slow_text(0.03) do
-      $number_input_text
+        $mage_text
     end
     sleep 1
-    slow_text(0.03) do
-      $mage_text
-    end
     char_class = $char_classes[1]
     ch_cl = true
   elsif char_class.to_i == 3
     slow_text(0.03) do
-      "You couldn't even type out the whole word?"
+     $number_input_text
     end
     sleep 1
     slow_text(0.03) do
@@ -155,14 +157,17 @@ CLASS_TEXT
     ch_cl = true
   else
     slow_text(0.03) do
-      "Really? Let's try this again"
+        $mistake_text.red
+    end
+    slow_text(0.03) do
+        $mistake_text_1.yellow
     end
     ch_cl = false
   end
 end
 
 puts
-sleep 1
+sleep 2
 
 ## Create character instance & add attributes
 
