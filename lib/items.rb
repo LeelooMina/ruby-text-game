@@ -1,4 +1,4 @@
-item_stats = {
+$item_stats = {
     {sword: "Sword", atk: 3, desc: "A normal sword with a dirty blade. It's not as cool as Excalibur."},
     {laptop: "Laptop", atk: 3, desc: "An old laptop. Can you even play Ruby Kingdom on this?"},
     {wand: "Wand", atk: 3, desc: "A magic wand with beautiful carvings. No way you made this by yourself."},
