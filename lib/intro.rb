@@ -69,17 +69,6 @@ end
 
 sleep 3
 
-#Loop until correct input
-puts <<-'CLASS_TEXT'
-
-Pick a class:
-    1. Warrior
-    2. Mage
-    3. Programmer
-
-CLASS_TEXT
-char_class = gets.chomp
-
 
 # Checks the user input to see if it matches an existing character class
 
