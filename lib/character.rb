@@ -20,6 +20,7 @@ class Character
         @char_class = "Warrior"
         @char_hp = 100
         @char_inventory = []
+        @char_gold = 0
         @char_level = 1
         @char_exp = 0
         @next_level_exp = 10
@@ -30,7 +31,12 @@ class Character
         
     end
         
-
+    $char_classes = [
+        "Warrior",
+        "Mage",
+        "Programmer"
+    ]
+    
 
 ## Name
 
@@ -74,6 +80,11 @@ def get_char_status
     @char_alive
 end
 
+def revive_char
+    @char_gold = 0
+    @char_alive = true
+end
+
 def check_status
     if @char_hp <= 0
         @char_alive = false
@@ -87,8 +98,13 @@ end
 
 def fill_inventoy(char_class)
     inventory_array = [] 
-    
-    inventory_array.push(class_weapon(char_class))
+    if @char_class == $char_classes[0]
+        inventory_array.push("Sword")
+    elsif @char_class == $char_classes[1]
+        inventory_array.push("Magic Wand")
+    elsif @char_class == $char_classes[2]
+        inventory_array.push("Laptop")
+    end
     inventory_array.push("Book")
     @char_inventory = inventory_array
     
@@ -111,14 +127,19 @@ def get_char_weapon
     @char_equipped_weapon
 end
 
-def class_weapon(char_class)
-    if char_class == $char_classes[0]
-        return "Sword"
-    elsif char_class == $char_classes[1]
-        return "Magic Wand"
-    elsif char_class == $char_classes[3]
-        return "Laptop"
-    end
+def set_char_gold(gold_amt, add_gold)
+        if add_gold == false && gold_amt > @char_gold
+            @char_gold = 0
+        elsif add_gold == true
+            @char_gold = @char_gold + gold_amt
+        elsif add_gold == false
+            @char_gold = @char_gold - gold_amt
+        end
+  
+end
+
+def get_char_gold
+    @char_gold
 end
 
 ## EXP
