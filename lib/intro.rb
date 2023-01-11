@@ -1,7 +1,7 @@
+require './lib/console_prompt.rb'
 require './lib/slow_text.rb'
 require './lib/character.rb'
-require './lib/console_prompt.rb'
-
+require './lib/game.rb'
 
 $warrior_text = "A warrior? Guess you expect a sword now too, huh?"
 $mage_text = "A mage? Like Harry Potter? Hope your brought your own wand."
@@ -102,7 +102,7 @@ if char_class.is_a?(Integer) != true && $char_classes.include?(char_class.downca
     case char_class
     when char_class.downcase.capitalize() == $char_class[0]
         puts $warrior_text
-    when char_class.downcase.capitalize() == @char_class[1]
+    when char_class.downcase.capitalize() == $char_class[1]
         puts $mage_text
     when char_class.downcase.capitalize() == $char_class[2]
         puts $programmer_text
@@ -117,12 +117,14 @@ elsif char_class.to_i == 1
     puts $number_input_text
     sleep 1
     puts $warrior_text
+    char_class = $char_classes[0]
     ch_cl = true
 
 elsif char_class.to_i == 2
     puts $number_input_text
     sleep 1
     puts $mage_text
+    char_class = $char_classes[1]
     ch_cl = true
 
 elsif char_class.to_i == 3
@@ -130,6 +132,7 @@ elsif char_class.to_i == 3
     sleep 1
     puts $programmer_text
     puts $programmer_text_2
+    char_class = $char_classes[2]
     ch_cl = true
 else
     puts "Really? Let's try this again"
@@ -149,6 +152,17 @@ $current_character.set_char_name(char_name)
 $current_character.set_char_class(char_class)
 
 puts $current_character.get_char_name
+
+puts $current_character.get_char_inventory
+
+$current_game = Game.new
+
+$current_map = #get map
+
+$current_game.set_character = $current_character
+$current_game.set_map = $current_map
+
+$current_map.start_game
 
 ## Add class to character instance
 
