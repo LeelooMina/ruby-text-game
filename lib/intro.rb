@@ -3,13 +3,13 @@ require './lib/character.rb'
 require './lib/console_prompt.rb'
 
 
-def class_checker(class_input = "chicken")
-    if $char_classes.include?(class_input.downcase.capitalize())
-        true
-    else
-        false
-   end
-end
+$warrior_text = "A warrior? Guess you expect a sword now too, huh?"
+$mage_text = "A mage? Like Harry Potter? Hope your brought your own wand."
+$programmer_text = "You wanna be a programer? That's.... weird."
+$programmer_text_2 = "What are you even going to fight with?"
+
+$number_input_text = "You couldn't even type out the whole word?"
+$word_input_text = "Why didn't you just type the number?"
 
 
 ## Welcome text
@@ -42,7 +42,8 @@ puts
 puts
 
 sleep 1
-## Char name, class, etc
+
+## Character Creation
 
 slow_text(0.03) do
      "What will your name be?"
@@ -70,10 +71,9 @@ end
 sleep 3
 
 
-# Checks the user input to see if it matches an existing character class
+## Checks the user input to see if it matches an existing character class
 
 ch_cl = false
-char_class = ''
 
 unless ch_cl == true
    
@@ -89,34 +89,47 @@ CLASS_TEXT
 
 
 char_class = gets.chomp
-puts "User entered #{char_class}"
+puts
+
 sleep 2
     
 
 
 if char_class.is_a?(Integer) != true && $char_classes.include?(char_class.downcase.capitalize())
-    puts "Why didn't you just type the number?"
+    puts $word_input_text
     ch_cl = true
+
+    case char_class
+    when char_class.downcase.capitalize() == $char_class[0]
+        puts $warrior_text
+    when char_class.downcase.capitalize() == @char_class[1]
+        puts $mage_text
+    when char_class.downcase.capitalize() == $char_class[2]
+        puts $programmer_text
+        puts $programmer_text_2
+    end
+    
 elsif char_class.to_i >= 4
     puts "Can you count to 3?"
     ch_cl = false
 
 elsif char_class.to_i == 1
-    puts "You couldn't even type out the whole word?"
+    puts $number_input_text
     sleep 1
-    puts "A warrior? So orginal"
+    puts $warrior_text
     ch_cl = true
 
 elsif char_class.to_i == 2
-    puts "You couldn't even type out the whole word?"
+    puts $number_input_text
     sleep 1
-    puts "A mage? Lame"
+    puts $mage_text
     ch_cl = true
 
 elsif char_class.to_i == 3
     puts "You couldn't even type out the whole word?"
     sleep 1
-    puts "You're playing a game called Ruby Kingdom AND you wanna be a programmer? Weird."
+    puts $programmer_text
+    puts $programmer_text_2
     ch_cl = true
 else
     puts "Really? Let's try this again"
@@ -128,12 +141,14 @@ end
 
 puts
 sleep 1
-puts "Oh no why is this repeating, plz help me"
 
 
-## Snarky if number "You couldn't even type out the whole word?"
-## Spelled out - "Why didn't you just type the number?"
-## Misspelled or other entries "Uh.. Maybe you need to try this again"
+$current_character = Character.new
+
+$current_character.set_char_name(char_name)
+$current_character.set_char_class(char_class)
+
+puts $current_character.get_char_name
 
 ## Add class to character instance
 
