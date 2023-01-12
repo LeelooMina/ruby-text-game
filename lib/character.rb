@@ -163,8 +163,8 @@ class Character
     @next_level_exp += 5
     @char_hp_max += 5
     @char_hp = @char_hp_max
-    puts "Level: #{char_level}".green
-    puts "Health: #{char_hp}".green
+    puts "Level: #{@char_level}".green
+    puts "Health: #{@char_hp}".green
   end
 
   def get_char_level
