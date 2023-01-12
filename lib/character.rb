@@ -14,7 +14,8 @@ class Character
     @char_name = "Oops"
     @char_class = "Warrior"
     @char_hp = 100
-    @char_hp_mex = 100
+    @char_hp_max = 100
+    @char_atk = 5
     @char_inventory = []
     @char_gold = 0
     @char_level = 1
@@ -90,11 +91,11 @@ class Character
   def fill_inventoy(char_class)
     inventory_array = []
     if @char_class == $char_classes[0]
-        add_to_inventory("Sword")
+      add_to_inventory("Sword")
     elsif @char_class == $char_classes[1]
-        add_to_inventory("Magic Wand")
+      add_to_inventory("Magic Wand")
     elsif @char_class == $char_classes[2]
-        add_to_inventory("Laptop")
+      add_to_inventory("Laptop")
     end
     @char_equipped_weapon = @char_inventory[0]
   end
@@ -102,10 +103,10 @@ class Character
   def add_to_inventory(new_item)
     @char_inventory.push(new_item)
     sleep 1
-         puts "You got a #{new_item}! Don't lose it!".green
-         sleep 1
-    
-end
+    puts "You got a #{new_item}! Don't lose it!".green
+    sleep 1
+  end
+
   def get_char_inventory
     @char_inventory
   end
@@ -145,8 +146,12 @@ end
     end
   end
 
-  def get_char_exp
-    @char_exp
+  def get_char_exp_to_level
+
+  end
+
+  def get_char_exp_to_level
+    @next_level_exp - @char_exp
   end
 
   ## Level
@@ -156,7 +161,7 @@ end
     @char_exp = @char_exp - @next_level_exp
     puts "You leveled up!".green
     @next_level_exp += 5
-    @char_hp_max = @char_hp_max += 5
+    @char_hp_max += 5
     @char_hp = @char_hp_max
     puts "Level: #{char_level}".green
     puts "Health: #{char_hp}".green
@@ -166,8 +171,12 @@ end
     @char_level
   end
 
-  def get_char_exp_to_level
+  def get_char_next_exp
     @next_level_exp
+  end
+
+  def get_char_atk
+    @char_atk
   end
 
   ## Map Location
