@@ -160,7 +160,7 @@ CLASS_TEXT
         $mistake_text.red
     end
     slow_text(0.03) do
-        $mistake_text_1.yellow
+        $mistake_text_2.yellow
     end
     ch_cl = false
   end
@@ -235,24 +235,28 @@ slow_text(0.1) do
 end
 
 sleep 1
-slow_text do
-  "This game doesn't even work yet."
-end
 
-slow_text do
-  "Here, have a random Pokemon name from the Pokemon API:"
-end
 
-slow_text do
-  get_rand_pokemon_name
-end
+# slow_text do
+#   "This game doesn't even work yet."
+# end
 
-puts
+# slow_text do
+#   "Here, have a random Pokemon name from the Pokemon API:"
+# end
+
+# slow_text do
+#   get_rand_pokemon_name
+# end
+
+# puts
 
 ## Show map
 # ## Create game instance & add attributes
 
-# $current_game = Game.new
+$current_game = Game.new($current_character)
+
+$current_game.combat_game
 
 # $current_map = #get map
 
