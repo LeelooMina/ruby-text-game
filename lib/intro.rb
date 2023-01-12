@@ -7,7 +7,7 @@ require "./lib/pokemon_api.rb"
 
 $warrior_text = "A warrior? Guess you expect a sword now too, huh?"
 $mage_text = "A mage? Like Harry Potter? Hope your brought your own wand."
-$programmer_text = "You wanna be a programer? That's.... weird."
+$programmer_text = "You wanna be a programmer? That's.... weird."
 $programmer_text_2 = "What are you even going to fight with?"
 
 $number_input_text = "You couldn't even type out the whole word?"
