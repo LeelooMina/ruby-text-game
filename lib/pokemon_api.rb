@@ -16,5 +16,3 @@ def get_rand_pokemon_name
   res = https.request(req)
   JSON.parse(res.body)["pokemon"]["name"].capitalize
 end
-
-
