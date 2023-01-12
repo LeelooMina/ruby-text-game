@@ -53,14 +53,15 @@ class Game
       puts  "#{enemy.get_enemy_name} has #{enemy.get_enemy_hp} HP left."
 
       #player status
-      puts "You have #{@currenthhh_character.get_char_hp} HP left."
+      puts "You have #{@current_character.get_char_hp} HP left."
       end
       sleep 1
       if @current_character.get_char_status == true
+        puts
         puts "You have beaten #{enemy.get_enemy_name}!"
         @current_character.add_exp(enemy.get_enemy_worth_exp)
         @current_character.set_char_gold(enemy.get_enemy_gold, true)
-
+        puts
         puts "You got #{enemy.get_enemy_worth_exp} EXP!".green
         puts "You are level #{@current_character.get_char_level}"
         puts "#{@current_character.get_char_exp_to_level} to the next level!"
@@ -72,19 +73,55 @@ class Game
 
 
     end
+    puts
 
-    puts "Well, looks like you died. Good job!"
+    puts <<-'BIG_TEXT'
+
+    ____                         ___                 
+    / ___| __ _ _ __ ___   ___   / _ \__   _____ _ __ 
+   | |  _ / _` | '_ ` _ \ / _ \ | | | \ \ / / _ \ '__|
+   | |_| | (_| | | | | | |  __/ | |_| |\ V /  __/ |   
+    \____|\__,_|_| |_| |_|\___|  \___/  \_/ \___|_|   
+                                                   
+    
+    BIG_TEXT
+
+    puts
+    puts "Well, looks like you died. Good job!".red
+    puts
     sleep 2
-    puts "Wanna try again?"
-    puts "You'll keep your level and items but I'm taking all #{$current_character.get_char_gold} of your gold."
-    puts "Y/N"
+    puts "Wanna try again?".green
+    puts "You'll keep your level and items but I'm taking all #{$current_character.get_char_gold} of your gold.".green
+    puts "Y/N?".yellow
     input = gets.chomp
     if input.downcase == "y" || input.downcase == "yes"
       $current_character.revive_char
       start_game
     else
+      puts
       sleep 1
-      puts "Don't let the door hit you on the way out!"
+      puts <<-'BIG_TEXT'
+
+      _____ _                 _           __            
+      |_   _| |__   __ _ _ __ | | _____   / _| ___  _ __ 
+        | | | '_ \ / _` | '_ \| |/ / __| | |_ / _ \| '__|
+        | | | | | | (_| | | | |   <\__ \ |  _| (_) | |   
+        |_| |_| |_|\__,_|_| |_|_|\_\___/ |_|  \___/|_|   
+                                                         
+             _             _             _ 
+       _ __ | | __ _ _   _(_)_ __   __ _| |
+      | '_ \| |/ _` | | | | | '_ \ / _` | |
+      | |_) | | (_| | |_| | | | | | (_| |_|
+      | .__/|_|\__,_|\__, |_|_| |_|\__, (_)
+      |_|            |___/         |___/   
+
+
+      BIG_TEXT
+
+
+      puts
+      puts "Don't let the door hit you on the way out!".red
+      puts
     end
   end
 
