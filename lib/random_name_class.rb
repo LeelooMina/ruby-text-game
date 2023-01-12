@@ -69,7 +69,7 @@ $random_names = [
 
 # random_monster_names = []
 
-random_monster_types = [
+$random_monster_types = [
   "Aerial Hobbit",
   "Thunder Valkyrie",
   "Boreal Satyr",
