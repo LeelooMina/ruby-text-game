@@ -76,6 +76,7 @@ class Character
   def revive_char
     @char_gold = 0
     @char_alive = true
+    @char_hp = @char_hp_max
   end
 
   def check_status
