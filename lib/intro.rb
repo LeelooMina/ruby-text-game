@@ -24,11 +24,12 @@ __        __   _                            _          ____        _
   \ V  V /  __/ | (_| (_) | | | | | |  __/ | || (_) | |  _ <| |_| | |_) | |_| |
    \_/\_/ \___|_|\___\___/|_| |_| |_|\___|  \__\___/  |_| \_\\__,_|_.__/ \__, |
                                                                          |___/
-                   _  ___                 _                 _
+                   _  ___                 _                 _ 
                   | |/ (_)_ __   __ _  __| | ___  _ __ ___ | |
                   | ' /| | '_ \ / _` |/ _` |/ _ \| '_ ` _ \| |
                   | . \| | | | | (_| | (_| | (_) | | | | | |_|
                   |_|\_\_|_| |_|\__, |\__,_|\___/|_| |_| |_(_)
+                                |___/  
 BIG_TEXT
 
 puts
@@ -61,13 +62,16 @@ sleep 1
 puts "#{char_name}?".red.bold.italic
 puts
 sleep 1
+puts "Really?".red.bold.italic
+puts
+sleep 1
 slow_text(0.1) do
-  "Okay.".green.bold
+  "Well...Okay.".green.bold
 end
 puts
 sleep 1
 slow_text(0.03) do
-  "Well, you can't change it now."
+  "Hope you're happy. You can't change it now."
 end
 
 sleep 3
@@ -134,7 +138,9 @@ CLASS_TEXT
     char_class = $char_classes[0]
     ch_cl = true
   elsif char_class.to_i == 2
-  
+    slow_text(0.03) do
+      $number_input_text
+    end
     slow_text(0.03) do
         $mage_text
     end
