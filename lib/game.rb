@@ -16,7 +16,8 @@ class Game
       enemy = Enemy.new(@current_character)
 
 
-
+      puts
+      puts
       puts "Oh no! You spot a level #{enemy.get_enemy_level} #{enemy.get_enemy_name}!".red
       sleep 2
       puts "Fight! Fight! Fight!".green
@@ -52,7 +53,7 @@ class Game
       puts  "#{enemy.get_enemy_name} has #{enemy.get_enemy_hp} HP left."
 
       #player status
-      puts "You have #{@current_character.get_char_hp} HP left."
+      puts "You have #{@currenthhh_character.get_char_hp} HP left."
       end
       sleep 1
       if @current_character.get_char_status == true
