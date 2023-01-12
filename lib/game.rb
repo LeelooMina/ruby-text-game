@@ -38,7 +38,7 @@ class Game
       break if @current_character.get_char_status == false
       puts  
       sleep 1
-      puts "Are you going to let him get away with that??"
+      puts "Are you going to let them get away with that??"
       puts "Enter some mean words to attack back!"
       player_words = gets.chomp
 
