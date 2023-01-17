@@ -160,8 +160,10 @@ class Character
     @next_level_exp += 5
     @hp_max += 5
     @hp = @hp_max
+    @atk += @atk * 50%
     puts "Level: #{@level}".green
     puts "Health: #{@hp}".green
+    puts "Attack: #{@atk}".green
   end
 
   def get_level
