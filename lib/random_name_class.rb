@@ -143,7 +143,7 @@ $random_monster_types = [
   "Hollow Razor",
   "Corrupt Pest",
   "Disfigured Dawn",
-  "Big Bad Charmer",
+  "Big Bad chr_mer",
   "Deadly Spirit",
   "Faint Gut",
   "Dangerous Fetid",

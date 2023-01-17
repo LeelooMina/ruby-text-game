@@ -12,7 +12,7 @@ class Game
 
   def combat_game
 
-    while @current_character.get_char_status == true
+    while @current_character.get_chr__status == true
       enemy = Enemy.new(@current_character)
 
 
@@ -35,7 +35,7 @@ class Game
 
       puts "#{enemy.get_enemy_name} attacks you for #{enemy.get_enemy_atk}!".red.bold
       @current_character.change_hp(enemy.get_enemy_atk, "loss")
-      break if @current_character.get_char_status == false
+      break if @current_character.get_chr__status == false
       puts  
       sleep 1
       puts "Are you going to let them get away with that??"
@@ -44,8 +44,8 @@ class Game
 
       #player Atk
 
-      puts "You attack #{enemy.get_enemy_name} with '#{player_words}' and your #{@current_character.get_char_weapon} for #{@current_character.get_char_atk}!".red.italic
-      enemy.remove_hp(@current_character.get_char_atk)
+      puts "You attack #{enemy.get_enemy_name} with '#{player_words}' and your #{@current_character.get_chr__weapon} for #{@current_character.get_chr__atk}!".red.italic
+      enemy.remove_hp(@current_character.get_chr__atk)
       break if enemy.get_enemy_alive == false
       sleep 1
 
@@ -53,21 +53,21 @@ class Game
       puts  "#{enemy.get_enemy_name} has #{enemy.get_enemy_hp} HP left."
 
       #player status
-      puts "You have #{@current_character.get_char_hp} HP left."
+      puts "You have #{@current_character.get_chr__hp} HP left."
       end
       sleep 1
-      if @current_character.get_char_status == true
+      if @current_character.get_chr__status == true
         puts
         puts "You have beaten #{enemy.get_enemy_name}!"
         @current_character.add_exp(enemy.get_enemy_worth_exp)
-        @current_character.set_char_gold(enemy.get_enemy_gold, true)
+        @current_character.set_chr__gold(enemy.get_enemy_gold, true)
         puts
         puts "You got #{enemy.get_enemy_worth_exp} EXP!".green
-        puts "You are level #{@current_character.get_char_level}"
-        puts "#{@current_character.get_char_exp_to_level} to the next level!"
+        puts "You are level #{@current_character.get_chr__level}"
+        puts "#{@current_character.get_chr__exp_to_level} to the next level!"
         puts
         puts "You got #{enemy.get_enemy_gold} gold!".yellow
-        puts "You have #{@current_character.get_char_gold} gold!".yellow
+        puts "You have #{@current_character.get_chr__gold} gold!".yellow
         sleep 2
       end
 
@@ -91,11 +91,11 @@ class Game
     puts
     sleep 2
     puts "Wanna try again?".green
-    puts "You'll keep your level and items but I'm taking all #{$current_character.get_char_gold} of your gold.".green
+    puts "You'll keep your level and items but I'm taking all #{$current_character.get_chr__gold} of your gold.".green
     puts "Y/N?".yellow
     input = gets.chomp
     if input.downcase == "y" || input.downcase == "yes"
-      $current_character.revive_char
+      $current_character.revive_chr
       start_game
     else
       puts
@@ -174,7 +174,7 @@ end
 
 #   def start_game
 #     puts "Type 'help' for... you'll never guess"
-#     while @current_character.get_char_status == true
+#     while @current_character.get_chr__status == true
 #       puts @current_map.get_location_desc
 #       puts "What do you want to do next?"
 #       input = gets.chomp
@@ -186,11 +186,11 @@ end
 #     puts "Well, looks like you died. Good job!"
 #     sleep 2
 #     puts "Wanna try again?"
-#     puts "You'll keep your level and items but I'm taking all #{$current_character.get_char_gold} of your gold."
+#     puts "You'll keep your level and items but I'm taking all #{$current_character.get_chr__gold} of your gold."
 #     puts "Y/N"
 #     input = gets.chomp
 #     if input.downcase == "y"
-#       $current_character.revive_char
+#       $current_character.revive_chr_
 #       start_game
 #     else
 #       puts "Don't let the door hit you on the way out!"

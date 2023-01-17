@@ -1,4 +1,4 @@
-$char_classes = [
+$character_classes = [
     "Warrior",
     "Mage",
     "Programmer"

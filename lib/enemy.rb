@@ -78,7 +78,7 @@ class Enemy
 
   ## Level
   def set_enemy_level(character)
-    level_possible = character.get_char_level + 1
+    level_possible = character.get_chr_level + 1
     rand_num = rand(1..level_possible)
     @enemy_level = rand_num
   end

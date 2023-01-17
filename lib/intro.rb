@@ -46,12 +46,12 @@ puts
 
 sleep 1
 
-## Character Creation
+## character Creation
 
 slow_text(0.03) do
   "What will your name be?"
 end
-char_name = gets.chomp
+chr__name = gets.chomp
 puts
 
 sleep 2
@@ -59,7 +59,7 @@ sleep 2
 puts "Oh.".yellow.bold
 puts
 sleep 1
-puts "#{char_name}?".red.bold.italic
+puts "#{chr__name}?".red.bold.italic
 puts
 sleep 1
 puts "Really?".red.bold.italic
@@ -92,27 +92,27 @@ Pick a class:
 CLASS_TEXT
   end
 
-  char_class = gets.chomp
+  chr__class = gets.chomp
   puts
 
   sleep 2
 
-  if $char_classes.include?(char_class.downcase.capitalize())
+  if $chr__classes.include?(chr__class.downcase.capitalize())
     slow_text do
          $word_input_text
     end
     ch_cl = true
 
-    case char_class.downcase.capitalize()
-    when $char_classes[0]
+    case chr__class.downcase.capitalize()
+    when $chr__classes[0]
       slow_text(0.03) do
         $warrior_text
       end
-    when $char_classes[1]
+    when $chr__classes[1]
       slow_text do
         $mage_text
       end
-    when $char_classes[2]
+    when $chr__classes[2]
       slow_text(0.03) do
         $programmer_text
       end
@@ -121,13 +121,13 @@ CLASS_TEXT
       end
     end
 
-    char_class = char_class.downcase.capitalize()
-  elsif char_class.to_i >= 4
+    chr__class = chr__class.downcase.capitalize()
+  elsif chr__class.to_i >= 4
     slow_text(0.07) do
       "Can you count to 3?"
     end
     ch_cl = false
-  elsif char_class.to_i == 1
+  elsif chr__class.to_i == 1
     slow_text(0.03) do
       $number_input_text
     end
@@ -135,9 +135,9 @@ CLASS_TEXT
     slow_text(0.03) do
       $warrior_text
     end
-    char_class = $char_classes[0]
+    chr__class = $chr__classes[0]
     ch_cl = true
-  elsif char_class.to_i == 2
+  elsif chr__class.to_i == 2
     slow_text(0.03) do
       $number_input_text
     end
@@ -145,9 +145,9 @@ CLASS_TEXT
         $mage_text
     end
     sleep 1
-    char_class = $char_classes[1]
+    chr__class = $chr__classes[1]
     ch_cl = true
-  elsif char_class.to_i == 3
+  elsif chr__class.to_i == 3
     slow_text(0.03) do
      $number_input_text
     end
@@ -159,7 +159,7 @@ CLASS_TEXT
     slow_text(0.03) do
       $programmer_text_2
     end
-    char_class = $char_classes[2]
+    chr__class = $chr__classes[2]
     ch_cl = true
   else
     slow_text(0.03) do
@@ -179,8 +179,8 @@ sleep 2
 
 $current_character = Character.new
 
-$current_character.set_char_name(char_name)
-$current_character.set_char_class(char_class)
+$current_character.set_chr_name(chr__name)
+$current_character.set_chr_class(chr__class)
 
 ## Joke text
 
@@ -231,7 +231,7 @@ puts
 puts
 
 slow_text(0.03) do
-    "You are #{$current_character.get_char_name}, a #{$current_character.get_char_class} in Ruby Kingdom!".green
+    "You are #{$current_character.get_chr__name}, a #{$current_character.get_chr__class} in Ruby Kingdom!".green
 end
 
 puts
