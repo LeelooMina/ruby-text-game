@@ -51,7 +51,7 @@ sleep 1
 slow_text(0.03) do
   "What will your name be?"
 end
-print "> ".green.blink
+print "> ".green
 character_name = gets.chomp
 puts
 
@@ -93,7 +93,7 @@ Pick a class:
 CLASS_TEXT
   end
 
-  print "> ".green.blink
+  print "> ".green
   class_input = gets.chomp
   puts
 

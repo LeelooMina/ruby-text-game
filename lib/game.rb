@@ -40,7 +40,7 @@ class Game
       sleep 1
       puts "Are you going to let them get away with that??"
       puts "Enter some mean words to attack back!"
-      print "> ".green.blink
+      print "> ".green
       player_words = gets.chomp
 
       #player Atk
@@ -94,7 +94,7 @@ class Game
     puts "Wanna try again?".green
     puts "You'll keep your level and items but I'm taking all #{$current_character.get_gold} of your gold.".green
     puts "Y/N?".yellow
-    print "> ".green.blink
+    print "> ".green
     input = gets.chomp
     if input.downcase == "y" || input.downcase == "yes"
       $current_character.revive
