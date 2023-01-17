@@ -51,7 +51,8 @@ sleep 1
 slow_text(0.03) do
   "What will your name be?"
 end
-chr__name = gets.chomp
+print "> ".green.blink
+character_name = gets.chomp
 puts
 
 sleep 2
@@ -59,7 +60,7 @@ sleep 2
 puts "Oh.".yellow.bold
 puts
 sleep 1
-puts "#{chr__name}?".red.bold.italic
+puts "#{character_name}?".red.bold.italic
 puts
 sleep 1
 puts "Really?".red.bold.italic
@@ -78,9 +79,9 @@ sleep 3
 
 ## Checks the user input to see if it matches an existing character class
 
-ch_cl = false
+character_class_check = false
 
-while ch_cl != true
+while character_class_check != true
   slow_text do
     <<-'CLASS_TEXT'
 
@@ -92,27 +93,28 @@ Pick a class:
 CLASS_TEXT
   end
 
-  chr__class = gets.chomp
+  print "> ".green.blink
+  class_input = gets.chomp
   puts
 
   sleep 2
 
-  if $chr__classes.include?(chr__class.downcase.capitalize())
+  if Character::CHARACTER_CLASSES.include?(class_input.downcase.capitalize())
     slow_text do
-         $word_input_text
+      $word_input_text
     end
-    ch_cl = true
+    character_class_check = true
 
-    case chr__class.downcase.capitalize()
-    when $chr__classes[0]
+    case class_input.downcase.capitalize()
+    when Character::CHARACTER_CLASSES[0]
       slow_text(0.03) do
         $warrior_text
       end
-    when $chr__classes[1]
+    when Character::CHARACTER_CLASSES[1]
       slow_text do
         $mage_text
       end
-    when $chr__classes[2]
+    when Character::CHARACTER_CLASSES[2]
       slow_text(0.03) do
         $programmer_text
       end
@@ -121,13 +123,13 @@ CLASS_TEXT
       end
     end
 
-    chr__class = chr__class.downcase.capitalize()
-  elsif chr__class.to_i >= 4
+    class_input = class_input.downcase.capitalize()
+  elsif class_input.to_i >= 4
     slow_text(0.07) do
       "Can you count to 3?"
     end
-    ch_cl = false
-  elsif chr__class.to_i == 1
+    character_class_check = false
+  elsif class_input.to_i == 1
     slow_text(0.03) do
       $number_input_text
     end
@@ -135,21 +137,21 @@ CLASS_TEXT
     slow_text(0.03) do
       $warrior_text
     end
-    chr__class = $chr__classes[0]
-    ch_cl = true
-  elsif chr__class.to_i == 2
+    class_input = Character::CHARACTER_CLASSES[0]
+    character_class_check = true
+  elsif class_input.to_i == 2
     slow_text(0.03) do
       $number_input_text
     end
     slow_text(0.03) do
-        $mage_text
+      $mage_text
     end
     sleep 1
-    chr__class = $chr__classes[1]
-    ch_cl = true
-  elsif chr__class.to_i == 3
+    class_input = Character::CHARACTER_CLASSES[1]
+    character_class_check = true
+  elsif class_input.to_i == 3
     slow_text(0.03) do
-     $number_input_text
+      $number_input_text
     end
     sleep 1
     slow_text(0.03) do
@@ -159,16 +161,16 @@ CLASS_TEXT
     slow_text(0.03) do
       $programmer_text_2
     end
-    chr__class = $chr__classes[2]
-    ch_cl = true
+    class_input = Character::CHARACTER_CLASSES[2]
+    character_class_check = true
   else
     slow_text(0.03) do
-        $mistake_text.red
+      $mistake_text.red
     end
     slow_text(0.03) do
-        $mistake_text_2.yellow
+      $mistake_text_2.yellow
     end
-    ch_cl = false
+    character_class_check = false
   end
 end
 
@@ -179,13 +181,13 @@ sleep 2
 
 $current_character = Character.new
 
-$current_character.set_chr_name(chr__name)
-$current_character.set_chr_class(chr__class)
+$current_character.set_name(character_name)
+$current_character.set_class(class_input)
 
 ## Joke text
 
-random_name = random_name()
-random_class = random_class()
+random_name = RandomName.random_name
+random_class = RandomName.random_class
 
 puts
 slow_text(0.03) do
@@ -225,13 +227,12 @@ slow_text(0.1) do
   "......"
 end
 
-
 sleep 1
 puts
 puts
 
 slow_text(0.03) do
-    "You are #{$current_character.get_chr__name}, a #{$current_character.get_chr__class} in Ruby Kingdom!".green
+  "You are #{$current_character.get_name}, a #{$current_character.get_class} in Ruby Kingdom!".green
 end
 
 puts
@@ -241,21 +242,6 @@ slow_text(0.1) do
 end
 
 sleep 1
-
-
-# slow_text do
-#   "This game doesn't even work yet."
-# end
-
-# slow_text do
-#   "Here, have a random Pokemon name from the Pokemon API:"
-# end
-
-# slow_text do
-#   get_rand_pokemon_name
-# end
-
-# puts
 
 ## Show map
 # ## Create game instance & add attributes
