@@ -27,7 +27,7 @@ class Character
     @location_y = 0
   end
 
-  $character_classes = [
+  CHARACTER_CLASSES = [
     "Warrior",
     "Mage",
     "Programmer",
@@ -44,9 +44,9 @@ class Character
   end
 
   ## Class
-  def set_class(_class_input)
-    @class = _class_input
-    fill_inventoy(@_class)
+  def set_class(class_input)
+    @class = class_input
+    fill_inventory
   end
 
   def get_class
@@ -89,13 +89,13 @@ class Character
 
   ## Inventory
 
-  def fill_inventoy(class)
+  def fill_inventory
     inventory_array = []
-    if @class == $character_classes[0]
+    if @class == Character::CHARACTER_CLASSES[0]
       add_to_inventory("Sword")
-    elsif @class == $character__classes[1]
+    elsif @class == Character::CHARACTER_CLASSES[1]
       add_to_inventory("Magic Wand")
-    elsif @class == $character__classes[2]
+    elsif @class == Character::CHARACTER_CLASSES[2]
       add_to_inventory("Laptop")
     end
     @equipped_weapon = @inventory[0]
@@ -137,25 +137,25 @@ class Character
   ## EXP
 
   def add_exp(exp_amt)
-    @exp += exp_amt
+    @exp_points += exp_amt
     level_up_check
   end
 
   def level_up_check
-    if @exp >= @next_level_exp
+    if @exp_points >= @next_level_exp
       level_up
     end
   end
 
   def get_exp_to_level
-    @next_level_exp - @exp
+    @next_level_exp - @exp_points
   end
 
   ## Level
 
   def level_up
     @level += 1
-    @exp = @exp - @next_level_exp
+    @exp_points = @exp_points - @next_level_exp
     puts "You leveled up!".green
     @next_level_exp += 5
     @hp_max += 5
