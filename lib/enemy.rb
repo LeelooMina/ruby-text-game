@@ -4,6 +4,7 @@ require "./lib/random_name_class.rb"
 require "./lib/pokemon_api.rb"
 
 class Enemy
+
   def initialize(current_character)
     @enemy_type
     @name
@@ -16,11 +17,11 @@ class Enemy
     @worth_exp = 5
 
     decide_type
-    set_enemy_level(current_character)
+    set_level(current_character)
     set_init_hp
     set_atk
     set_exp
-    set_enemy_gold
+    set_gold
   end
  
   def get_name
@@ -47,7 +48,7 @@ class Enemy
     @alive
   end
 
-  def get_enemy_atk
+  def get_atk
     @atk
   end
 
@@ -68,7 +69,7 @@ class Enemy
   end
 
   def set_name_fantasy
-    @name = random_monster_type
+    @name = RandomName.random_monster_type
   end
 
   def set_name_pokemon
