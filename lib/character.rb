@@ -1,33 +1,33 @@
 require "./lib/slow_text.rb"
 
 class Character
-  attr_accessor :char_name
-  attr_accessor :char_class
-  attr_accessor :char_HP
-  attr_accessor :char_inventory
-  attr_accessor :char_level
-  attr_accessor :char_EXP
-  attr_accessor :char_location_x
-  attr_accessor :char_location_y
+  attr_accessor :chr_name
+  attr_accessor :chr_class
+  attr_accessor :chr_HP
+  attr_accessor :chr_inventory
+  attr_accessor :chr_level
+  attr_accessor :chr_EXP
+  attr_accessor :chr_location_x
+  attr_accessor :chr_location_y
 
   def initialize
-    @char_name = "Oops"
-    @char_class = "Warrior"
-    @char_hp = 100
-    @char_hp_max = 100
-    @char_atk = 5
-    @char_inventory = []
-    @char_gold = 0
-    @char_level = 1
-    @char_exp = 0
+    @chr_name = "Oops"
+    @chr_class = "Warrior"
+    @chr_hp = 100
+    @chr_hp_max = 100
+    @chr_atk = 5
+    @chr_inventory = []
+    @chr_gold = 0
+    @chr_level = 1
+    @chr_exp = 0
     @next_level_exp = 10
-    @char_alive = true
-    @char_equipped_weapon = "Sword"
-    @char_location_x = 0
-    @char_location_y = 0
+    @chr_alive = true
+    @chr_equipped_weapon = "Sword"
+    @chr_location_x = 0
+    @chr_location_y = 0
   end
 
-  $char_classes = [
+  $chr_classes = [
     "Warrior",
     "Mage",
     "Programmer",
@@ -35,158 +35,158 @@ class Character
 
   ## Name
 
-  def set_char_name(name)
-    @char_name = name
+  def set_chr_name(name)
+    @chr_name = name
   end
 
-  def get_char_name
-    @char_name
+  def get_chr_name
+    @chr_name
   end
 
   ## Class
-  def set_char_class(char_class_input)
-    @char_class = char_class_input
-    fill_inventoy(@char_class)
+  def set_chr_class(_class_input)
+    @chr_class = _class_input
+    fill_inventoy(@_class)
   end
 
-  def get_char_class
-    @char_class
+  def get_chr_class
+    @chr_class
   end
 
   ## HP
 
   def change_hp(hp_amount, gain_or_loss)
     if gain_or_loss == "gain"
-      @char_hp = @char_hp + hp_amount
+      @chr_hp = @chr_hp + hp_amount
     elsif gain_or_loss == "loss"
-      @char_hp = @char_hp - hp_amount
+      @chr_hp = @chr_hp - hp_amount
     end
 
     check_status
   end
 
-  def get_char_hp
-    @char_hp
+  def get_chr_hp
+    @chr_hp
   end
 
-  def get_char_status
-    @char_alive
+  def get_chr_status
+    @chr_alive
   end
 
-  def revive_char
-    @char_gold = 0
-    @char_alive = true
-    @char_hp = @char_hp_max
+  def revive_chr
+    @chr_gold = 0
+    @chr_alive = true
+    @chr_hp = @_hp_max
   end
 
   def check_status
-    if @char_hp <= 0
-      @char_alive = false
-    elsif @char_hp < 0
-      @char_alive = true
+    if @chr_hp <= 0
+      @chr_alive = false
+    elsif @chr_hp < 0
+      @chr_alive = true
     end
   end
 
   ## Inventory
 
-  def fill_inventoy(char_class)
+  def fill_inventoy(_class)
     inventory_array = []
-    if @char_class == $char_classes[0]
+    if @chr_class == $character_classes[0]
       add_to_inventory("Sword")
-    elsif @char_class == $char_classes[1]
+    elsif @chr_class == $character__classes[1]
       add_to_inventory("Magic Wand")
-    elsif @char_class == $char_classes[2]
+    elsif @chr_class == $character__classes[2]
       add_to_inventory("Laptop")
     end
-    @char_equipped_weapon = @char_inventory[0]
+    @chr_equipped_weapon = @chr_inventory[0]
   end
 
   def add_to_inventory(new_item)
-    @char_inventory.push(new_item)
+    @chr_inventory.push(new_item)
     sleep 1
     puts "You got a #{new_item}! Don't lose it!".green
     sleep 1
   end
 
-  def get_char_inventory
-    @char_inventory
+  def get_chr_inventory
+    @chr_inventory
   end
 
   def change_weapon(new_weapon)
-    @char_equipped_weapon = new_weapon
+    @chr_equipped_weapon = new_weapon
   end
 
-  def get_char_weapon
-    @char_equipped_weapon
+  def get_chr_weapon
+    @chr_equipped_weapon
   end
 
-  def set_char_gold(gold_amt, add_gold)
-    if add_gold == false && gold_amt > @char_gold
-      @char_gold = 0
+  def set_chr_gold(gold_amt, add_gold)
+    if add_gold == false && gold_amt > @_gold
+      @chr_gold = 0
     elsif add_gold == true
-      @char_gold = @char_gold + gold_amt
+      @chr_gold = @chr_gold + gold_amt
     elsif add_gold == false
-      @char_gold = @char_gold - gold_amt
+      @chr_gold = @chr_gold - gold_amt
     end
   end
 
-  def get_char_gold
-    @char_gold
+  def get_chr_gold
+    @chr_gold
   end
 
   ## EXP
 
   def add_exp(exp_amt)
-    @char_exp += exp_amt
+    @chr_exp += exp_amt
     level_up_check
   end
 
   def level_up_check
-    if @char_exp >= @next_level_exp
+    if @chr_exp >= @next_level_exp
       level_up
     end
   end
 
-  def get_char_exp_to_level
+  def get_chr_exp_to_level
 
   end
 
-  def get_char_exp_to_level
-    @next_level_exp - @char_exp
+  def get_chr_exp_to_level
+    @next_level_exp - @chr_exp
   end
 
   ## Level
 
   def level_up
-    @char_level += 1
-    @char_exp = @char_exp - @next_level_exp
+    @chr_level += 1
+    @chr_exp = @chr_exp - @next_level_exp
     puts "You leveled up!".green
     @next_level_exp += 5
-    @char_hp_max += 5
-    @char_hp = @char_hp_max
-    puts "Level: #{@char_level}".green
-    puts "Health: #{@char_hp}".green
+    @_hp_max += 5
+    @_hp = @_hp_max
+    puts "Level: #{@_level}".green
+    puts "Health: #{@_hp}".green
   end
 
-  def get_char_level
-    @char_level
+  def get__level
+    @_level
   end
 
-  def get_char_next_exp
+  def get__next_exp
     @next_level_exp
   end
 
-  def get_char_atk
-    @char_atk
+  def get__atk
+    @_atk
   end
 
   ## Map Location
 
-  def get_char_location_x
-    @char_location_x
+  def get__location_x
+    @_location_x
   end
 
-  def get_char_location_y
-    @char_location_y
+  def get__location_y
+    @_location_y
   end
 end
