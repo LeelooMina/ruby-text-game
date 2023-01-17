@@ -1,7 +1,9 @@
 ## Generated with https://generatorfun.com/job-title-generator
 ## From the site 1/11/2023 " Usage - You are free to use anything generated in your creative works. Because the generators use AI to create content it is possible it may create words or sentances that are owned by other parties. This is up to you to check. And as always, feel free to link back if you use our generators."
 
-$random_classes = [
+module RandomName
+
+RANDOM_CLASSES = [
   "Lead Marketing Soothsayer",
   "New Wave Brand Ninja",
   "Genuine Research Architect",
@@ -34,7 +36,7 @@ $random_classes = [
   "Enterprise Discovery Maven",
 ]
 
-$random_names = [
+RANDOM_NAMES = [
   "Danna",
   "Miracle",
   "Thyme",
@@ -67,9 +69,7 @@ $random_names = [
   "Mercury",
 ]
 
-# random_monster_names = []
-
-$random_monster_types = [
+RANDOM_MONSTER_TYPES = [
   "Aerial Hobbit",
   "Thunder Valkyrie",
   "Boreal Satyr",
@@ -143,7 +143,7 @@ $random_monster_types = [
   "Hollow Razor",
   "Corrupt Pest",
   "Disfigured Dawn",
-  "Big Bad chr_mer",
+  "Big Bad Charmer",
   "Deadly Spirit",
   "Faint Gut",
   "Dangerous Fetid",
@@ -154,25 +154,21 @@ $random_monster_types = [
 ]
 
 def random_name
-  end_range = $random_names.length - 1
+  end_range = RANDOM_NAMES.length - 1
   ran_num = rand(0..end_range)
-  $random_names[ran_num]
+  RANDOM_NAMES[ran_num]
 end
 
 def random_class
-  end_range = $random_classes.length - 1
+  end_range = RANDOM_CLASSES .length - 1
   ran_num = rand(0..end_range)
-  $random_classes[ran_num]
+  RANDOM_CLASSES [ran_num]
 end
 
-# def random_monster_name
-#   end_range = $random__monster_names.length - 1
-#   ran_num = rand(0..end_range)
-#   $random__monster_names[ran_num]
-# end
-
 def random_monster_type
-  end_range = $random_monster_types.length - 1
+  end_range = RANDOM_MONSTER_TYPES.length - 1
   ran_num = rand(0..end_range)
-  $random_monster_types[ran_num]
+  RANDOM_MONSTER_TYPES[ran_num]
+end
+
 end
