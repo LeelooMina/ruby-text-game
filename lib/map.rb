@@ -99,6 +99,8 @@ class Map
   end
 
   def move
+    print_map
+    puts
     puts "Which direction do you want to move?"
     print "> ".green
     direction = gets.chomp
@@ -107,9 +109,9 @@ class Map
       set_character_location(@character_location - 3)
     when "south", "s", "down", "back", "backwards"
       set_character_location(@character_location + 3)
-    when "west", "w", "left"
+    when "west", "w", "left", "l"
       set_character_location(@character_location - 1)
-    when "east", "e", "right"
+    when "east", "e", "right", "r"
       set_character_location(@character_location + 1)
     when "help"
       puts "Try typing a direction, such as 'North' or 'N'.".yellow.italic
