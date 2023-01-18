@@ -5,7 +5,7 @@ class Character
   attr_accessor :name
   attr_accessor :class
   attr_accessor :hp
-  attr_accessor :inventory
+  attr_accessor :inventory, :gold
   attr_accessor :level
   attr_accessor :exp_points
   attr_accessor :location_x

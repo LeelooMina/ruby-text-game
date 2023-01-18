@@ -50,46 +50,55 @@ class Map
     when 1
       clear_location
       @map_grid[1][1] = "  X "
+      @locations["1"].roll_enemy
       print_map
       run_location(1)
     when 2
       clear_location
       @map_grid[1][2] = "  X "
+      @locations["2"].roll_enemy
       print_map
       run_location(2)
     when 3
       clear_location
       @map_grid[1][4] = "  X "
+      @locations["3"].roll_enemy
       print_map
       run_location(3)
     when 4
       clear_location
       @map_grid[3][1] = "  X "
+      @locations["4"].roll_enemy
       print_map
       run_location(4)
     when 5
       clear_location
       @map_grid[3][2] = "  X "
+      @locations["5"].roll_enemy
       print_map
       run_location(5)
     when 6
       clear_location
       @map_grid[3][4] = "  X "
+      @locations["6"].roll_enemy
       print_map
       run_location(6)
     when 7
       clear_location
       @map_grid[5][1] = "  X "
+      @locations["7"].roll_enemy
       print_map
       run_location(7)
     when 8
       clear_location
       @map_grid[5][2] = "  X "
+      @locations["8"].roll_enemy
       print_map
       run_location(8)
     when 9
       clear_location
       @map_grid[5][4] = "  X "
+      @locations["9"].roll_enemy
       print_map
       run_location(9)
     else
@@ -103,11 +112,11 @@ class Map
     puts
     puts "Which direction do you want to move?"
     print "> ".green
-    direction = gets.chomp
+    direction = gets.chomp.downcase
     case direction
-    when "north", "n", "up", "forward"
+    when "north", "n", "up", "forward", "f", "u"
       set_character_location(@character_location - 3)
-    when "south", "s", "down", "back", "backwards"
+    when "south", "s", "down", "back", "backwards", "d"
       set_character_location(@character_location + 3)
     when "west", "w", "left", "l"
       set_character_location(@character_location - 1)
