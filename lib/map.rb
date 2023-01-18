@@ -41,7 +41,7 @@ class Map
   # +  +  +  +
 
   def return_to_menu
-    run_location[@character_location]
+    run_location(@character_location)
   end
 
   def set_character_location(locaton)

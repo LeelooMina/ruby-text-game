@@ -40,7 +40,6 @@ class Location
        
     end
 
-
     def run
         puts
         puts @description
