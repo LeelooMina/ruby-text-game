@@ -43,7 +43,7 @@ class Location
     def run
         puts
         puts @description
-        if @enemy_check == true
+        if @enemy_check == true && @shop ==  false
             puts "There is an enemy here".red
         end
         puts
@@ -57,9 +57,9 @@ class Location
     end
 
     def init_location
-        if @@location_counter == @@castle_location
+        if @@location_counter == 3
             set_castle
-        elsif @@location_counter == @@shop_location
+        elsif @@location_counter == 4
             set_shop
         else
             set_land
@@ -135,6 +135,10 @@ class Location
         end
         
        
+    end
+
+    def roll_enemy
+        @enemy_check = enemy?
     end
 
     def enemy?
