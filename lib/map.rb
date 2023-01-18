@@ -1,3 +1,5 @@
+require './lib/location.rb'
+
 class Map
   def initialize
     @house = "    H "
@@ -10,20 +12,97 @@ class Map
     @tree_amt = 2
     @rock_amt = 2
 
-    @empty_map_grid = Array.new(7) { Array.new(4, "")}
+    @map_grid = Array.new(7) { Array.new(4, "")}
+    @map_cords = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    @character_location = 9
+    
+    @locations = {
+     "1" => Location.new,
+     "2" => Location.new,
+     "3" => Location.new,
+     "4" => Location.new,
+     "5" => Location.new,
+     "6" => Location.new,
+     "7" => Location.new,
+     "8" => Location.new,
+     "9" => Location.new
+    }
   end
+
+
+def set_character_location(locaton = 9)
+    @character_location = locaton
+    case @character_location
+    when 1
+        @map_grid[1][1] = "  X "
+        print_map
+        run_location(1)
+    when 2
+        @map_grid[1][2] = "  X "
+        print_map
+        run_location(2)
+    when 3 
+        @map_grid[1][4] = "  X "
+        print_map
+        run_location(3)
+    when 4
+        @map_grid[3][1] = "  X "
+        print_map
+        run_location(4)
+    when 5
+        @map_grid[3][2] = "  X "
+        print_map
+        run_location(5)
+    when 6
+        @map_grid[3][4] = "  X "
+        print_map
+        run_location(6)
+    when 7 
+        @map_grid[5][1] = "  X "
+        print_map
+        run_location(7)
+    when 8
+        @map_grid[5][2] = "  X "
+        print_map
+        run_location(8)
+    when 9
+        @map_grid[5][4] = "  X "
+        print_map
+        run_location(9)
+    else
+        puts "You can't go that way."
+    end
+    
+end
+
+def move(direction)
+    case direction
+    when "north", "n", "up", "forward"
+        set_character_location(@character_location - 3)
+    when "south", "s", "down", "back", "backwards"
+        set_character_location(@character_location + 3)
+    when "west", "w", "left"
+        set_character_location(@character_location - 1)
+    when "east", "e", "right"
+        set_character_location(@character_location + 1)
+    end
+end
+
+def run_location(cord)
+    
+     @locations["#{cord}"].run
+
+
+end
 
     ## generate_map
     ## map is represented by an arry that represents a 3x3 grid
-    ## map[rows][columns]
+    ## map_grid[rows][columns]
     ## Rows 0, 2, 4, 6 - Even numbers are the corners of the map's grid
     ## Rows 1, 3, 5 - Odd numbers have space for landmarks/ character placement
-    ## Row 7 is the bottom row of corners
-    ## Columns 0, 1, 3 have space for landmarks/location
-    ## Column 2 is left empty for spacing reasons
-    ## Column 4 is the last column of map corners
+    ## Columns 1, 2, 4 have space for landmarks/location
     ##
-    ## Example: Adding character location to center -  map[3][1]
+    ## Example: Adding character location to center -  map_grid[3][2]
     # +  +  +  + 
  
     # +  +  +  + 
@@ -34,16 +113,16 @@ class Map
 
 # def generate_map
 
-#     @empty_map_grid[1][0] = @house
-#     @empty_map_grid[5][4] = @ruby_castle
-#     # @empty_map_grid.each_with_index do |row, i|
+#     @map_grid[1][0] = @house
+#     @map_grid[5][4] = @ruby_castle
+#     # @map_grid.each_with_index do |row, i|
 #     #     row.each_with_index do |column, y|
 #     #       if i.odd? && i != 7
-#     #         @empty_map_grid[i][y] = landmark_counters
+#     #         @map_grid[i][y] = landmark_counters
 #     #       end
 #     #     end
 #     # end
-#     # puts @empty_map_grid
+#     # puts @map_grid
 # end
     
 # def set_landmarks
@@ -78,32 +157,28 @@ class Map
 
 def print_map
      
-  @empty_map_grid.each_with_index do |row, i|
+  @map_grid.each_with_index do |row, i|
     row.each_with_index do |column, y|
       if i.even?
         print "  +"
       elsif column != "" && row != ""
-        if column != "" && row != ""
             space_counter = 0
             while space_counter < y
               print "  "
               space_counter += 1
             end
-            print @empty_map_grid[i][y]
+            print @map_grid[i][y]
         end
-        # print "   X "
-      end
+      
     end
+
+    ## Spacing between rows
 
     puts " "
   end
 end
 
-## Spacing 
 
-def set_character_location(x, y)
-    @empty_map_grid[x][y] = "  X "
-end
 end
   ## Enter house
 
@@ -113,9 +188,8 @@ end
 
   map = Map.new
 #   map.generate_map
-  map.set_character_location(5, 4)
+  map.set_character_location(5)
 
-  map.print_map
-
+ 
 
 
