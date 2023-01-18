@@ -134,7 +134,7 @@ module Auth
   
       @@class_choice = class_input
       puts
-      sleep 2
+      sleep 1
     end
   end
 
