@@ -141,6 +141,11 @@ class Location
         @enemy_check = enemy?
     end
 
+    def set_enemy(check)
+        @enemy_check = check
+    end
+
+
     def enemy?
         random_number = rand(0..10)
         if random_number.odd?

@@ -109,7 +109,7 @@ class Map
   end
 
   def defeat_enemy
-    @character_location.enemy_check = false
+    @character_location.set_enemy = false
   end
 
   def move
