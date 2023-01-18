@@ -24,8 +24,8 @@ class Character
     @next_level_exp = 10
     @alive = true
     @equipped_weapon = "Sword"
-    @location_x = 0
-    @location_y = 0
+    @location = 0
+   
   end
 
   CHARACTER_CLASSES = [

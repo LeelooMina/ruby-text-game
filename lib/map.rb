@@ -46,6 +46,7 @@ class Map
 
   def set_character_location(locaton)
     @character_location = locaton
+    $current_character.location = locaton
     case @character_location
     when 1
       clear_location
@@ -105,6 +106,10 @@ class Map
       puts "You can't go that way."
       move
     end
+  end
+
+  def defeat_enemy
+    @character_location.enemy_check = false
   end
 
   def move
