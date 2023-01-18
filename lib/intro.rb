@@ -1,9 +1,10 @@
-require "./lib/console_prompt.rb"
+require "./lib/text_style.rb"
+require "./lib/map.rb"
 require "./lib/slow_text.rb"
 require "./lib/character.rb"
-require "./lib/game.rb"
 require "./lib/random_name_class.rb"
 require "./lib/pokemon_api.rb"
+require "./lib/game.rb"
 
 $warrior_text = "A warrior? Guess you expect a sword now too, huh?"
 $mage_text = "A mage? Like Harry Potter? Hope your brought your own wand."
@@ -247,8 +248,9 @@ sleep 1
 # ## Create game instance & add attributes
 
 $current_game = Game.new($current_character)
-
-$current_game.combat_game
+$map = Map.new
+#   map.generate_map
+  $map.set_character_location(5)
 
 # $current_map = #get map
 

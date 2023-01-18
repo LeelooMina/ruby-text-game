@@ -81,7 +81,7 @@ module Menu
         end
 
         def self.fight
-            puts "fight"
+            $current_game.combat_game
         end
 
         def self.check_inventory

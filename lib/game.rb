@@ -11,8 +11,8 @@ class Game
   end
 
   def combat_game
-
-    while @current_character.get_status == true
+    @combat_mode = true
+    while @current_character.get_status == true && @combat_mode == true
       enemy = Enemy.new(@current_character)
 
 
@@ -70,12 +70,23 @@ class Game
         puts "You got #{enemy.get_gold} gold!".yellow
         puts "You have #{@current_character.get_gold} gold!".yellow
         sleep 2
+        break
       end
 
 
     end
     puts
 
+    if @current_character.get_status == false
+      game_over
+    else
+      $map.return_to_menu
+    end
+
+   
+  end
+
+  def game_over
     puts <<-'BIG_TEXT'
 
     ____                         ___                 
