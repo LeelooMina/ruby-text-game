@@ -8,8 +8,7 @@ class Character
   attr_accessor :inventory, :gold
   attr_accessor :level
   attr_accessor :exp_points
-  attr_accessor :location_x
-  attr_accessor :location_y
+  attr_accessor :location
 
   def initialize
     @name = "Oops"
@@ -181,11 +180,4 @@ class Character
 
   ## Map Location
 
-  def get_location_x
-    @location_x
-  end
-
-  def get_location_y
-    @location_y
-  end
 end
