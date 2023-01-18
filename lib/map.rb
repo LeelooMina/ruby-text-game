@@ -45,65 +45,84 @@ class Map
   end
 
   def set_character_location(locaton)
-    @character_location = locaton
-    $current_character.location = locaton
-    case @character_location
+    case locaton
     when 1
       clear_location
       @map_grid[1][1] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
       @locations["1"].roll_enemy
       print_map
       run_location(1)
     when 2
       clear_location
       @map_grid[1][2] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
       @locations["2"].roll_enemy
       print_map
       run_location(2)
     when 3
       clear_location
       @map_grid[1][4] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
       @locations["3"].roll_enemy
       print_map
       run_location(3)
     when 4
       clear_location
       @map_grid[3][1] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
       @locations["4"].roll_enemy
       print_map
       run_location(4)
     when 5
       clear_location
       @map_grid[3][2] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
       @locations["5"].roll_enemy
       print_map
       run_location(5)
     when 6
       clear_location
       @map_grid[3][4] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
       @locations["6"].roll_enemy
       print_map
       run_location(6)
     when 7
       clear_location
       @map_grid[5][1] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
       @locations["7"].roll_enemy
       print_map
       run_location(7)
     when 8
       clear_location
       @map_grid[5][2] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
       @locations["8"].roll_enemy
       print_map
       run_location(8)
     when 9
       clear_location
       @map_grid[5][4] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
       @locations["9"].roll_enemy
       print_map
       run_location(9)
     else
-      puts "You can't go that way."
+      puts
+      puts "You can't go that way.".red.bold.italic
+      sleep 1
+      puts
       move
     end
   end
