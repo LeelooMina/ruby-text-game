@@ -6,9 +6,11 @@ module Menu
   @@location = nil
   @@input_tester = false
 
+
   def self.run(location)
         @@input_tester = false
         @@location = location
+        puts "Type 'save' to save your progress at any time.".gray.italic
         while @@input_tester == false
             puts "What do you wanna do?"
             puts "1. Move"
