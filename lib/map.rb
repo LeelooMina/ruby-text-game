@@ -1,4 +1,4 @@
-require './lib/location.rb'
+require "./lib/location.rb"
 
 class Map
   def initialize
@@ -29,53 +29,77 @@ class Map
     }
   end
 
+  ## Assigns chracter location as if the grid is 
+  ## laid out in a 1-9 format
+  ## Example: 
+    # +  +  +  + 
+    #  1  2   3
+    # +  +  +  + 
+    #  4  5  6
+    # +  +  +  + 
+    #  7  8  9  
+    # +  +  +  + 
+
 
 def set_character_location(locaton = 9)
     @character_location = locaton
     case @character_location
     when 1
+        clear_location
         @map_grid[1][1] = "  X "
         print_map
         run_location(1)
     when 2
+        clear_location
         @map_grid[1][2] = "  X "
         print_map
         run_location(2)
     when 3 
+        clear_location
         @map_grid[1][4] = "  X "
         print_map
         run_location(3)
     when 4
+        clear_location
         @map_grid[3][1] = "  X "
         print_map
         run_location(4)
     when 5
+        clear_location
         @map_grid[3][2] = "  X "
         print_map
         run_location(5)
     when 6
+        clear_location
         @map_grid[3][4] = "  X "
         print_map
         run_location(6)
     when 7 
+        clear_location
         @map_grid[5][1] = "  X "
         print_map
         run_location(7)
     when 8
+        clear_location
         @map_grid[5][2] = "  X "
         print_map
         run_location(8)
     when 9
+        clear_location
         @map_grid[5][4] = "  X "
         print_map
         run_location(9)
     else
         puts "You can't go that way."
+        move
     end
     
 end
 
-def move(direction)
+def move
+    puts "Which direction do you want to move?"
+    print "> ".green
+    direction = gets.chomp
     case direction
     when "north", "n", "up", "forward"
         set_character_location(@character_location - 3)
@@ -85,6 +109,11 @@ def move(direction)
         set_character_location(@character_location - 1)
     when "east", "e", "right"
         set_character_location(@character_location + 1)
+    when "help"
+        puts "Try typing a direction, such as 'North' or 'N'.".yellow.italic
+        move
+    else
+        move
     end
 end
 
@@ -93,9 +122,22 @@ def run_location(cord)
      @locations["#{cord}"].run
 
 
+
 end
 
-    ## generate_map
+def clear_location
+    @map_grid.each_with_index do |row, i|
+        row.each_with_index do |column, y|
+          if column != "" && row != ""
+             @map_grid[i][y] = ""
+            end
+          
+        end
+    end
+
+end
+
+    
     ## map is represented by an arry that represents a 3x3 grid
     ## map_grid[rows][columns]
     ## Rows 0, 2, 4, 6 - Even numbers are the corners of the map's grid
@@ -111,58 +153,15 @@ end
    
     # +  +  +  + 
 
-# def generate_map
-
-#     @map_grid[1][0] = @house
-#     @map_grid[5][4] = @ruby_castle
-#     # @map_grid.each_with_index do |row, i|
-#     #     row.each_with_index do |column, y|
-#     #       if i.odd? && i != 7
-#     #         @map_grid[i][y] = landmark_counters
-#     #       end
-#     #     end
-#     # end
-#     # puts @map_grid
-# end
     
-# def set_landmarks
-#     rand_num = rand(0..100)
-
-#     if rand_num.even? 
-#         return landmark_counters
-#     end  
-
-# end
-
-# def landmark_counters
-#     case
-#     when  @castle_amt != 0
-#         @castle_amt -= 1
-#         @castle
-#     when @house_amt != 0
-#         @house_amt -= 1
-#         @house
-#     when    @tree_amt != 0
-#         @tree_amt -= 1
-#         @tree
-#     when    @rock_amt != 0
-#         @rock_amt -= 1
-#         @rock
-#     end
-# end
-
-# def get_landmark
-
-# end
-
-def print_map
+    def print_map
      
   @map_grid.each_with_index do |row, i|
     row.each_with_index do |column, y|
       if i.even?
         print "  +"
-      elsif column != "" && row != ""
-            space_counter = 0
+    elsif column != "" && row != ""
+        space_counter = 0
             while space_counter < y
               print "  "
               space_counter += 1
@@ -180,16 +179,53 @@ end
 
 
 end
-  ## Enter house
 
-  ## Enter castle
-
-  ## Print Map
-
-  map = Map.new
-#   map.generate_map
-  map.set_character_location(5)
 
  
 
 
+
+  
+  # def generate_map
+  
+  #     @map_grid[1][0] = @house
+  #     @map_grid[5][4] = @ruby_castle
+  #     # @map_grid.each_with_index do |row, i|
+  #     #     row.each_with_index do |column, y|
+  #     #       if i.odd? && i != 7
+  #     #         @map_grid[i][y] = landmark_counters
+  #     #       end
+  #     #     end
+  #     # end
+  #     # puts @map_grid
+  # end
+      
+  # def set_landmarks
+  #     rand_num = rand(0..100)
+  
+  #     if rand_num.even? 
+  #         return landmark_counters
+  #     end  
+  
+  # end
+  
+  # def landmark_counters
+  #     case
+  #     when  @castle_amt != 0
+  #         @castle_amt -= 1
+  #         @castle
+  #     when @house_amt != 0
+  #         @house_amt -= 1
+  #         @house
+  #     when    @tree_amt != 0
+  #         @tree_amt -= 1
+  #         @tree
+  #     when    @rock_amt != 0
+  #         @rock_amt -= 1
+  #         @rock
+  #     end
+  # end
+  
+  # def get_landmark
+  
+  # end
