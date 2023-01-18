@@ -48,20 +48,29 @@ puts
 
 sleep 1
 
-login = ""
-while login != "y" && login != "n"
-puts "Have you been here before?"
-puts "Y/N"
-print "> ".green
-login = gets.chomp.downcase
-end
+# login = ""
+# while login != "y" && login != "n"
+# puts "Have you been here before?"
+# puts "Y/N"
+# print "> ".green
+# login = gets.chomp.downcase
+# end
 
-if login.downcase == "y"
-  Auth.login
+# if login.downcase == "y"
+#   Auth.login
+# else
+#   Auth.character_creation
+# end
+
+puts "Skip into?"
+skip_check = gets.chomp.downcase
+if skip_check == "yes" || skip_check == "y"
+  Auth.intro_skip
 else
-  Auth.character_creation
+  Auth.character_intro
 end
 
+puts
 sleep 1
 
 ## Show map
