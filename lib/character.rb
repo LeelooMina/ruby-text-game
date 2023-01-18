@@ -1,3 +1,4 @@
+require "./lib/text_style.rb"
 require "./lib/slow_text.rb"
 
 class Character
@@ -160,7 +161,7 @@ class Character
     @next_level_exp += 5
     @hp_max += 5
     @hp = @hp_max
-    @atk += @atk * 50%
+    @atk += @atk * 0.5
     puts "Level: #{@level}".green
     puts "Health: #{@hp}".green
     puts "Attack: #{@atk}".green
