@@ -1,7 +1,5 @@
 require "json"
-
 require "net/http"
-
 require "uri"
 
 def get_rand_pokemon_name
