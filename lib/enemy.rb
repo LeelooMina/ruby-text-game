@@ -6,8 +6,8 @@ require "./lib/pokemon_api.rb"
 class Enemy
 
   def initialize(current_character)
-    @enemy_type
-    @name
+    @enemy_type = ""
+    @name = ""
     @hp = 10
     @loot = []
     @gold = 1
