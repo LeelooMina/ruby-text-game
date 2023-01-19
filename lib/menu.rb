@@ -12,10 +12,10 @@ module Menu
       puts "What do you wanna do?"
       puts "1. Move"
       if location.enemy_check == true && location.shop == false
-        puts "2. Fight"
+        puts "2. Fight".red
         puts "3. Check Inventory"
       elsif location.shop == true
-        puts "2. Shop"
+        puts "2. Shop".blue
         puts "3. Check Inventory"
       else
         puts "2. Check Inventory"
@@ -25,7 +25,9 @@ module Menu
       user_selection = gets.chomp
       user_selection = test_input(user_selection, location)
       if @@input_tester == false
+        puts
         puts "We'll keep trying this until you get it right!".yellow.italic
+        puts
       end
     end
 
@@ -89,8 +91,11 @@ module Menu
   end
 
   def self.shop
+    puts
     puts "The sign on the shop reads:"
-    puts "Sorry, we're closed."
+    puts "Sorry, we're closed.".italic.yellow
+    sleep 1
+    puts
     run(@@location)
   end
 end
