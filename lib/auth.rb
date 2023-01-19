@@ -19,7 +19,7 @@ module Auth
   end
 
   def self.intro_skip
-    puts "Name?"
+    puts "What will your character's name be?"
     @@name = gets.chomp
     class_selection
     create_character

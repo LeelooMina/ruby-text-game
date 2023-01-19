@@ -62,8 +62,15 @@ sleep 1
 #   Auth.character_creation
 # end
 
-puts "Skip intro?"
+slow_text do
+   "Would you like to skip the introduction?"
+end
+slow_text do
+ "Y/N"
+end
+print "> ".green
 skip_check = gets.chomp.downcase
+puts
 if skip_check == "yes" || skip_check == "y"
   Auth.intro_skip
 else
