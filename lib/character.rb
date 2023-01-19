@@ -90,7 +90,7 @@ class Character
   ## Inventory
 
   def fill_inventory
-    inventory_array = []
+    
     if @class == Character::CHARACTER_CLASSES[0]
       add_to_inventory("Sword")
     elsif @class == Character::CHARACTER_CLASSES[1]
@@ -157,10 +157,13 @@ class Character
     @level += 1
     @exp_points = @exp_points - @next_level_exp
     puts "You leveled up!".green
-    @next_level_exp += 5
-    @hp_max += 5
+    @next_level_exp += @next_level_exp * 0.5
+    @next_level_exp = @next_level_exp.truncate
+    @hp_max += @hp_max * 0.1
+    @hp_max = @hp_max.truncate
     @hp = @hp_max
-    @atk += @atk * 0.5
+    @atk += @atk + 5
+    @atk = @atk.truncate
     puts "Level: #{@level}".green
     puts "Health: #{@hp}".green
     puts "Attack: #{@atk}".green

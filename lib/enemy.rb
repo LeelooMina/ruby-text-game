@@ -58,7 +58,7 @@ class Enemy
 
   ## Type
   def decide_type
-    rand_num = rand(0..20)
+    rand_num = rand(0..100)
     if rand_num.odd?
       @enemy_type = "Fantasy"
       set_name_fantasy
@@ -85,6 +85,7 @@ class Enemy
 
   def set_atk
     @atk =  2 * @level
+  @atk = @atk.truncate
   end
 
   ## Hit points
