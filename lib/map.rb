@@ -168,7 +168,8 @@ class Map
     end
   end
 
-  ## map is represented by an arry that represents a 3x3 grid
+  ## map is a matrix represented by a nested array
+  ## this is used to create a 3x3 grid
   ## map_grid[rows][columns]
   ## Rows 0, 2, 4, 6 - Even numbers are the corners of the map's grid
   ## Rows 1, 3, 5 - Odd numbers have space for landmarks/ character placement

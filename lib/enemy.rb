@@ -84,7 +84,7 @@ class Enemy
   end
 
   def set_atk
-    @atk = 2 * @level
+    @atk =  2 * @level
   end
 
   ## Hit points
