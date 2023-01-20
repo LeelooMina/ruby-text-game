@@ -1,3 +1,6 @@
+require "./lib/slow_text.rb"
+require "./lib/text_response.rb"
+
 module Auth
   @@characters = [
     {
@@ -6,8 +9,12 @@ module Auth
     },
   ]
 
+  @text_response = TextResponse.new
+
   @@class_choice = ''
   @@name = ''
+
+
 
   ## Create character instance & add attributes
 
@@ -60,25 +67,25 @@ module Auth
   
       if Character::CHARACTER_CLASSES.include?(class_input.downcase.capitalize())
         slow_text do
-          $word_input_text
+          @text_response.word_input
         end
         character_class_check = true
   
         case class_input.downcase.capitalize()
         when Character::CHARACTER_CLASSES[0]
           slow_text(0.03) do
-            $warrior_text
+            @text_response.warrior_selection
           end
         when Character::CHARACTER_CLASSES[1]
           slow_text do
-            $mage_text
+            @text_response.mage_selection
           end
         when Character::CHARACTER_CLASSES[2]
           slow_text(0.03) do
-            $programmer_text
+            @text_response.programmer_selection
           end
           slow_text(0.03) do
-            $programmer_text_2
+            @text_response.programmer_selection_2
           end
         end
   
@@ -89,45 +96,48 @@ module Auth
         end
         character_class_check = false
       elsif class_input.to_i == 1
+        
         slow_text(0.03) do
-          $number_input_text
+          @text_response.number_input
         end
         sleep 1
         slow_text(0.03) do
-          $warrior_text
+          @text_response.warrior_selection
         end
         class_input = Character::CHARACTER_CLASSES[0]
         character_class_check = true
       elsif class_input.to_i == 2
         slow_text(0.03) do
-          $number_input_text
+          @text_response.number_input
         end
         slow_text(0.03) do
-          $mage_text
+          @text_response.mage_selection
         end
         sleep 1
         class_input = Character::CHARACTER_CLASSES[1]
         character_class_check = true
       elsif class_input.to_i == 3
         slow_text(0.03) do
-          $number_input_text
+          @text_response.number_input
         end
         sleep 1
         slow_text(0.03) do
-          $programmer_text
+          @text_response.programmer_selection
         end
   
         slow_text(0.03) do
-          $programmer_text_2
+          @text_response.programmer_selection
         end
         class_input = Character::CHARACTER_CLASSES[2]
         character_class_check = true
       else
+        
         slow_text(0.03) do
-          $mistake_text.red
+          @text_response.mistake_1.red
         end
+        
         slow_text(0.03) do
-          $mistake_text_2.yellow
+          @text_response.mistake_2.yellow
         end
         character_class_check = false
       end

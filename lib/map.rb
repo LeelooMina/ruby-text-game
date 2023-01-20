@@ -131,6 +131,8 @@ class Map
     @locations["#{@character_location}"].set_enemy(false)
   end
 
+  
+
   def move
     print_map
     puts
