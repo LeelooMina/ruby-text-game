@@ -6,7 +6,7 @@ class Game
 
   def initialize(cur_character)
     @current_character = cur_character
-    @current_map
+    @current_map = nil
     @combat_mode = false
   end
 
@@ -80,6 +80,7 @@ class Game
     if @current_character.get_status == false
       game_over
     else
+      $map.defeat_enemy
       $map.return_to_menu
     end
 

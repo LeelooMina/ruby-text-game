@@ -1,0 +1,12 @@
+require './lib/text_style.rb'
+require './lib/intro.rb'
+require "./lib/text_style.rb"
+require "./lib/map.rb"
+require "./lib/slow_text.rb"
+require "./lib/character.rb"
+require "./lib/random_name_class.rb"
+require "./lib/pokemon_api.rb"
+require "./lib/game.rb"
+require "./lib/auth.rb"
+
+Intro.new.run 

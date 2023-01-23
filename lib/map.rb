@@ -45,69 +45,104 @@ class Map
   end
 
   def set_character_location(locaton)
-    @character_location = locaton
-    case @character_location
+    case locaton
     when 1
       clear_location
       @map_grid[1][1] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
+      @locations["1"].roll_enemy
       print_map
       run_location(1)
     when 2
       clear_location
       @map_grid[1][2] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
+      @locations["2"].roll_enemy
       print_map
       run_location(2)
     when 3
       clear_location
       @map_grid[1][4] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
+      @locations["3"].roll_enemy
       print_map
       run_location(3)
     when 4
       clear_location
       @map_grid[3][1] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
+      @locations["4"].roll_enemy
       print_map
       run_location(4)
     when 5
       clear_location
       @map_grid[3][2] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
+      @locations["5"].roll_enemy
       print_map
       run_location(5)
     when 6
       clear_location
       @map_grid[3][4] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
+      @locations["6"].roll_enemy
       print_map
       run_location(6)
     when 7
       clear_location
       @map_grid[5][1] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
+      @locations["7"].roll_enemy
       print_map
       run_location(7)
     when 8
       clear_location
       @map_grid[5][2] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
+      @locations["8"].roll_enemy
       print_map
       run_location(8)
     when 9
       clear_location
       @map_grid[5][4] = "  X "
+      @character_location = locaton
+    $current_character.location = locaton
+      @locations["9"].roll_enemy
       print_map
       run_location(9)
     else
-      puts "You can't go that way."
+      puts
+      puts "You can't go that way.".red.bold.italic
+      sleep 1
+      puts
       move
     end
   end
+
+  def defeat_enemy
+    @locations["#{@character_location}"].set_enemy(false)
+  end
+
+  
 
   def move
     print_map
     puts
     puts "Which direction do you want to move?"
     print "> ".green
-    direction = gets.chomp
+    direction = gets.chomp.downcase
     case direction
-    when "north", "n", "up", "forward"
+    when "north", "n", "up", "forward", "f", "u"
       set_character_location(@character_location - 3)
-    when "south", "s", "down", "back", "backwards"
+    when "south", "s", "down", "back", "backwards", "d"
       set_character_location(@character_location + 3)
     when "west", "w", "left", "l"
       set_character_location(@character_location - 1)
@@ -135,7 +170,8 @@ class Map
     end
   end
 
-  ## map is represented by an arry that represents a 3x3 grid
+  ## map is a matrix represented by a nested array
+  ## this is used to create a 3x3 grid
   ## map_grid[rows][columns]
   ## Rows 0, 2, 4, 6 - Even numbers are the corners of the map's grid
   ## Rows 1, 3, 5 - Odd numbers have space for landmarks/ character placement

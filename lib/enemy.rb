@@ -6,8 +6,8 @@ require "./lib/pokemon_api.rb"
 class Enemy
 
   def initialize(current_character)
-    @enemy_type
-    @name
+    @enemy_type = ""
+    @name = ""
     @hp = 10
     @loot = []
     @gold = 1
@@ -58,7 +58,7 @@ class Enemy
 
   ## Type
   def decide_type
-    rand_num = rand(0..20)
+    rand_num = rand(0..100)
     if rand_num.odd?
       @enemy_type = "Fantasy"
       set_name_fantasy
@@ -84,7 +84,8 @@ class Enemy
   end
 
   def set_atk
-    @atk = 2 * @level
+    @atk =  2 * @level
+  @atk = @atk.truncate
   end
 
   ## Hit points
