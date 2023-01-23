@@ -1,4 +1,7 @@
-module TextResponse
+class TextResponse
+
+
+    attr_accessor :NUMBER_INPUT_TEXT, :WORD_INPUT_TEXT, :MISTAKE_TEXT, :MISTAKE_TEXT_2, :WARRIOR_TEXT, :MAGE_TEXT, :PROGRAMMER_TEXT, :PROGRAMMER_TEXT_2
     @@NUMBER_INPUT_TEXT = "You couldn't even type out the whole word?"
 @@WORD_INPUT_TEXT = "Why didn't you just type the number?"
 @@MISTAKE_TEXT = "Really?"
