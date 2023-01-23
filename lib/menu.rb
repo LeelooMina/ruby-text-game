@@ -2,6 +2,7 @@ require "./lib/location.rb"
 require "./lib/text_style.rb"
 
 module Menu
+  @save_reminder = 0
   @@location = nil
   @@input_tester = false
 
@@ -21,9 +22,20 @@ module Menu
         puts "2. Check Inventory"
       end
       puts
+      if @save_reminder > 3
+        puts "Type 'save' to save your progress".italic
+      end
+      puts
       print "> ".green
       user_selection = gets.chomp
+      
+      if user_selection.downcase == 'save'
+        Auth::save_character
+        @@input_tester = true
+      else
       user_selection = test_input(user_selection, location)
+      end
+
       if @@input_tester == false
         puts
         puts "We'll keep trying this until you get it right!".yellow.italic
