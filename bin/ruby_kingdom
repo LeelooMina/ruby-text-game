@@ -9,4 +9,4 @@ require "./lib/pokemon_api.rb"
 require "./lib/game.rb"
 require "./lib/auth.rb"
 
-Intro.new.run 
+Intro::run
