@@ -1,5 +1,6 @@
 require "./lib/slow_text.rb"
 require "./lib/text_response.rb"
+require "./lib/intro.rb"
 
 module Auth
   @@characters = [
@@ -11,10 +12,8 @@ module Auth
 
   @text_response = TextResponse.new
 
-  @@class_choice = ''
-  @@name = ''
-
-
+  @@class_choice = ""
+  @@name = ""
 
   ## Create character instance & add attributes
 
@@ -30,13 +29,50 @@ module Auth
     @@name = gets.chomp
     class_selection
     create_character
+    Intro::run_game
   end
 
   def self.login
+    puts "Enter your email address:"
+    print "> ".green
+    email_input = gets.chomp
+
+    puts "Enter your password:"
+    print "> ".green
+    password_input = gets.chomp
+
+    auth_process(email_input, password_input)
+
+
+  end
+
+
+  def auth_process(email, password)
+
+
+fetch_character(email)
+  end
+
+
+  def fetch_character(email)
+
+
+
+    ## name, class, hp, inventory, gold, level, exp_points, location
+
     name = @@characters[0]["name"]
     $current_character = Character.new
     $current_character.set_name(name)
     $current_character.set_class(@@characters[0]["class"])
+    "You are __ , a thing in Ruby Kingdom"
+
+  end
+
+
+  def save_character(email)
+
+
+    Menu::run($current_character.location)
   end
 
   def self.sign_up
@@ -44,9 +80,35 @@ module Auth
   end
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   def self.class_selection
     character_class_check = false
-  
+
     while character_class_check != true
       slow_text do
         <<-'CLASS_TEXT'
@@ -58,19 +120,21 @@ module Auth
     
     CLASS_TEXT
       end
-  
+
       print "> ".green
       class_input = gets.chomp
       puts
-  
+
       sleep 2
-  
+
+      ## Checks the user input to see if it matches an existing character class
+
       if Character::CHARACTER_CLASSES.include?(class_input.downcase.capitalize())
         slow_text do
           @text_response.word_input
         end
         character_class_check = true
-  
+
         case class_input.downcase.capitalize()
         when Character::CHARACTER_CLASSES[0]
           slow_text(0.03) do
@@ -88,7 +152,7 @@ module Auth
             @text_response.programmer_selection_2
           end
         end
-  
+
         class_input = class_input.downcase.capitalize()
       elsif class_input.to_i >= 4
         slow_text(0.07) do
@@ -96,7 +160,6 @@ module Auth
         end
         character_class_check = false
       elsif class_input.to_i == 1
-        
         slow_text(0.03) do
           @text_response.number_input
         end
@@ -124,24 +187,23 @@ module Auth
         slow_text(0.03) do
           @text_response.programmer_selection
         end
-  
+
         slow_text(0.03) do
           @text_response.programmer_selection
         end
         class_input = Character::CHARACTER_CLASSES[2]
         character_class_check = true
       else
-        
         slow_text(0.03) do
           @text_response.mistake_1.red
         end
-        
+
         slow_text(0.03) do
           @text_response.mistake_2.yellow
         end
         character_class_check = false
       end
-  
+
       @@class_choice = class_input
       puts
       sleep 1
@@ -150,106 +212,109 @@ module Auth
 
   def self.character_intro
     ## character Creation
-
-    slow_text(0.03) do
-      "What will your name be?"
-    end
-    print "> ".green
-    character_name = gets.chomp
-    puts
-
-    sleep 2
-
-    puts "Oh.".yellow.bold
-    puts
-    sleep 1
-    puts "#{character_name}?".red.bold.italic
-    puts
-    sleep 1
-    puts "Really?".red.bold.italic
-    puts
-    sleep 1
-    slow_text(0.1) do
-      "Well...Okay.".green.bold
-    end
-
-    puts
-    sleep 1
-    slow_text(0.03) do
-      "Hope you're happy. You can't change it now."
-    end
-
-    sleep 3
-
-    @@name = character_name
-
-    class_selection
-
-    create_character
-
-    #   hash = {'name' => $current_character.get_name,
-    # 'class' => $current_character.get_class}
-    #   @@characters.push(hash)
-
-    ## Joke text
-
-    random_name = RandomName.random_name
-    random_class = RandomName.random_class
-
-    puts
-    slow_text(0.03) do
-      "You are #{random_name}, a #{random_class} in Ruby Kingdom!".green
-    end
-
-    sleep 1
-    puts
-
     slow_text do
-      "Wait..".yellow
+      "Wanna skip the intro?"
     end
-    puts
+    puts "Y/N"
+    print "> ".green
+    skip_check = gets.chomp.downcase
+    if skip_check == "y"
+      intro_skip
+    else
+      slow_text(0.03) do
+        "What will your name be?"
+      end
+      print "> ".green
+      character_name = gets.chomp
+      puts
 
-    sleep 2
+      sleep 2
 
-    slow_text(0.1) do
-      "What did you do??".red.bold.italic
-    end
+      puts "Oh.".yellow.bold
+      puts
+      sleep 1
+      puts "#{character_name}?".red.bold.italic
+      puts
+      sleep 1
+      puts "Really?".red.bold.italic
+      puts
+      sleep 1
+      slow_text(0.1) do
+        "Well...Okay.".green.bold
+      end
 
-    sleep 1
+      puts
+      sleep 1
+      slow_text(0.03) do
+        "Hope you're happy. You can't change it now."
+      end
 
-    slow_text(0.1) do
-      "You broke it!".red.bold.italic
-    end
+      sleep 3
 
-    sleep 2
-    puts
+      @@name = character_name
 
-    slow_text(0.1) do
-      "Now I have to go fix it.".yellow
-    end
+      class_selection
 
-    sleep 3
-    puts
-    slow_text(0.1) do
-      "......"
-    end
+      create_character
 
-    sleep 1
-    puts
-    puts
+      ## Joke text
 
-    slow_text(0.03) do
-      "You are #{$current_character.get_name}, a #{$current_character.get_class} in Ruby Kingdom!".green
-    end
+      random_name = RandomName.random_name
+      random_class = RandomName.random_class
 
-    puts
+      puts
+      slow_text(0.03) do
+        "You are #{random_name}, a #{random_class} in Ruby Kingdom!".green
+      end
 
-    slow_text(0.1) do
-      "Okay. It's working. Don't touch anything else.".cyan.bold
+      sleep 1
+      puts
+
+      slow_text do
+        "Wait..".yellow
+      end
+      puts
+
+      sleep 2
+
+      slow_text(0.1) do
+        "What did you do??".red.bold.italic
+      end
+
+      sleep 1
+
+      slow_text(0.1) do
+        "You broke it!".red.bold.italic
+      end
+
+      sleep 2
+      puts
+
+      slow_text(0.1) do
+        "Now I have to go fix it.".yellow
+      end
+
+      sleep 3
+      puts
+      slow_text(0.1) do
+        "......"
+      end
+
+      sleep 1
+      puts
+      puts
+
+      slow_text(0.03) do
+        "You are #{$current_character.get_name}, a #{$current_character.get_class} in Ruby Kingdom!".green
+      end
+
+      puts
+
+      slow_text(0.1) do
+        "Okay. It's working. Don't touch anything else.".cyan.bold
+      end
     end
   end
 end
-
-## Checks the user input to see if it matches an existing character class
 
 
