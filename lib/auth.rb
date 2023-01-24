@@ -1,6 +1,8 @@
 require "./lib/slow_text.rb"
 require "./lib/text_response.rb"
 require "./lib/intro.rb"
+require 'net/http'
+require 'json'
 
 module Auth
   @@characters = [
@@ -9,6 +11,9 @@ module Auth
       "class" => "Warrior",
     },
   ]
+
+  @API_KEY = "AIzaSyCJ4WSGrvIPx4USZqSJARqB_rwT2hc5uQg"
+@AUTH_DOMAIN = "identitytoolkit.googleapis.com/v1"
 
   @text_response = TextResponse.new
 
@@ -29,9 +34,29 @@ module Auth
     @@name = gets.chomp
     class_selection
     create_character
+    puts "Wanna sign up for an account?"
+      puts "Y/N"
+      input = gets.chomp.downcase
+      if input == "y"
+        sign_up
+
+
+      end
     Intro::run_game
   end
 
+  def self.send_request(uri, method, headers, body)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    request = case method
+              when :post then Net::HTTP::Post.new(uri, headers)
+              when :get then Net::HTTP::Get.new(uri, headers)
+              end
+    request.body = body
+    http.request(request)
+  end  
+
+  
   def self.login
     puts "Enter your email address:"
     print "> ".green
@@ -47,10 +72,23 @@ module Auth
   end
 
 
-  def auth_process(email, password)
+  def self.auth_process(email, password)
+    uri = URI("https://#{@AUTH_DOMAIN}/accounts:signInWithPassword?key=#{@API_KEY}")
+  body = { email: email, password: password, returnSecureToken: true }.to_json
+  headers = { 'Content-Type': 'application/json' }
+
+  response = send_request(uri, :post, headers, body)
+
+  if response.is_a?(Net::HTTPSuccess)
+    JSON.parse(response.body)
+  else
+    raise "Error signing in user: #{response.body}"
+
+  end
 
 
-fetch_character(email)
+#fetch_character(email)
+
   end
 
 
@@ -76,7 +114,26 @@ fetch_character(email)
   end
 
   def self.sign_up
-    @@characters
+    uri = URI("https://#{@AUTH_DOMAIN}/accounts:signUp?key=#{@API_KEY}")
+    
+    puts "Enter your email to sign up:"
+    email = gets.chomp
+    puts "Enter your new password:"
+    password = gets.chomp
+
+  body = { email: email, password: password, returnSecureToken: true }.to_json
+  headers = { 'Content-Type': 'application/json' }
+
+  response = send_request(uri, :post, headers, body)
+
+  if response.is_a?(Net::HTTPSuccess)
+    puts "Sign up sucessful!"
+    JSON.parse(response.body)
+    
+  else
+    raise "Error signing up user: #{response.body}"
+  end
+    # @@characters
   end
 
 
@@ -189,7 +246,7 @@ fetch_character(email)
         end
 
         slow_text(0.03) do
-          @text_response.programmer_selection
+          @text_response.programmer_selection_2
         end
         class_input = Character::CHARACTER_CLASSES[2]
         character_class_check = true
@@ -313,6 +370,17 @@ fetch_character(email)
       slow_text(0.1) do
         "Okay. It's working. Don't touch anything else.".cyan.bold
       end
+
+      puts "Wanna sign up for an account?"
+      puts "Y/N"
+      input = gets.chomp.downcase
+      if input == "y"
+        sign_up
+
+
+      end
+
+
     end
   end
 end
