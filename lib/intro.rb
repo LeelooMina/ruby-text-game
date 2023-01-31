@@ -27,6 +27,8 @@ module Intro
   end
 
   def self.greeting
+    system('clear')
+
     puts <<-'BIG_TEXT'
 __        __   _                            _          ____        _
 \ \      / /__| | ___ ___  _ __ ___   ___  | |_ ___   |  _ \ _   _| |__  _   _

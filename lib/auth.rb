@@ -67,7 +67,7 @@ module Auth
     password_input = gets.chomp
 
     auth_process(email_input, password_input)
-
+    intro_skip
 
   end
 
@@ -81,6 +81,7 @@ module Auth
 
   if response.is_a?(Net::HTTPSuccess)
     JSON.parse(response.body)
+   
   else
     raise "Error signing in user: #{response.body}"
 
@@ -129,6 +130,7 @@ module Auth
   if response.is_a?(Net::HTTPSuccess)
     puts "Sign up sucessful!"
     JSON.parse(response.body)
+   
     
   else
     raise "Error signing up user: #{response.body}"
