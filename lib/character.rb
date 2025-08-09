@@ -23,7 +23,7 @@ class Character
     @next_level_exp = 10
     @alive = true
     @equipped_weapon = "Sword"
-    @location = 0
+    @location = 5  # Start at center of map
    
   end
 
@@ -76,7 +76,7 @@ class Character
   def revive
     @gold = 0
     @alive = true
-    @hp = @_hp_max
+    @hp = @hp_max
   end
 
   def check_status
@@ -121,7 +121,7 @@ class Character
   end
 
   def set_gold(gold_amt, add_gold)
-    if add_gold == false && gold_amt > @_gold
+    if add_gold == false && gold_amt > @gold
       @gold = 0
     elsif add_gold == true
       @gold = @gold + gold_amt
@@ -182,5 +182,12 @@ class Character
   end
 
   ## Map Location
+  def get_location
+    @location
+  end
+  
+  def set_location(location)
+    @location = location
+  end
 
 end
