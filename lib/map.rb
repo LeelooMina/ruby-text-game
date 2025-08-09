@@ -50,7 +50,7 @@ class Map
       clear_location
       @map_grid[1][1] = "  X "
       @character_location = locaton
-    $current_character.location = locaton
+      $current_character.set_location(locaton)
       @locations["1"].roll_enemy
       print_map
       run_location(1)
@@ -58,7 +58,7 @@ class Map
       clear_location
       @map_grid[1][2] = "  X "
       @character_location = locaton
-    $current_character.location = locaton
+      $current_character.set_location(locaton)
       @locations["2"].roll_enemy
       print_map
       run_location(2)
@@ -66,7 +66,7 @@ class Map
       clear_location
       @map_grid[1][4] = "  X "
       @character_location = locaton
-    $current_character.location = locaton
+      $current_character.set_location(locaton)
       @locations["3"].roll_enemy
       print_map
       run_location(3)
@@ -74,7 +74,7 @@ class Map
       clear_location
       @map_grid[3][1] = "  X "
       @character_location = locaton
-    $current_character.location = locaton
+      $current_character.set_location(locaton)
       @locations["4"].roll_enemy
       print_map
       run_location(4)
@@ -82,7 +82,7 @@ class Map
       clear_location
       @map_grid[3][2] = "  X "
       @character_location = locaton
-    $current_character.location = locaton
+      $current_character.set_location(locaton)
       @locations["5"].roll_enemy
       print_map
       run_location(5)
@@ -90,7 +90,7 @@ class Map
       clear_location
       @map_grid[3][4] = "  X "
       @character_location = locaton
-    $current_character.location = locaton
+      $current_character.set_location(locaton)
       @locations["6"].roll_enemy
       print_map
       run_location(6)
@@ -98,7 +98,7 @@ class Map
       clear_location
       @map_grid[5][1] = "  X "
       @character_location = locaton
-    $current_character.location = locaton
+      $current_character.set_location(locaton)
       @locations["7"].roll_enemy
       print_map
       run_location(7)
@@ -106,7 +106,7 @@ class Map
       clear_location
       @map_grid[5][2] = "  X "
       @character_location = locaton
-    $current_character.location = locaton
+      $current_character.set_location(locaton)
       @locations["8"].roll_enemy
       print_map
       run_location(8)
@@ -114,7 +114,7 @@ class Map
       clear_location
       @map_grid[5][4] = "  X "
       @character_location = locaton
-    $current_character.location = locaton
+      $current_character.set_location(locaton)
       @locations["9"].roll_enemy
       print_map
       run_location(9)
