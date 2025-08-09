@@ -1,6 +1,7 @@
 require "./lib/slow_text.rb"
 require "./lib/character.rb"
 require "./lib/enemy.rb"
+require "./lib/quest_system.rb"
 
 class Game
 
@@ -15,24 +16,18 @@ class Game
     while @current_character.get_status == true && @combat_mode == true
       enemy = Enemy.new(@current_character)
 
-
       puts
       puts
-      puts "Oh no! You spot a level #{enemy.get_level} #{enemy.get_name}!".red
+      puts "⚔️  Oh no! You spot a level #{enemy.get_level} #{enemy.get_name}!".red
       sleep 2
       puts "Fight! Fight! Fight!".green
 
-
       while enemy.get_alive? == true
       
-      
-
       puts
-
       sleep 1
 
       #Enemy Atk
-
       puts "#{enemy.get_name} attacks you for #{enemy.get_atk}!".red.bold
       @current_character.change_hp(enemy.get_atk, "loss")
       break if @current_character.get_status == false
@@ -44,7 +39,6 @@ class Game
       player_words = gets.chomp
 
       #player Atk
-
       puts "You shout \"#{player_words}!\" as you attack #{enemy.get_name} with your #{@current_character.get_weapon} for #{@current_character.get_atk}!".red.italic
       enemy.remove_hp(@current_character.get_atk)
       break if enemy.get_alive? == false
@@ -59,7 +53,11 @@ class Game
       sleep 1
       if @current_character.get_status == true
         puts
-        puts "You have beaten #{enemy.get_name}!"
+        puts "🏆 You have beaten #{enemy.get_name}!"
+        
+        # Update quest progress
+        QuestSystem.update_quest_progress(:enemy_killed, enemy.get_name.downcase)
+        
         @current_character.add_exp(enemy.get_worth_exp)
         @current_character.set_gold(enemy.get_gold, true)
         puts
@@ -73,7 +71,6 @@ class Game
         break
       end
 
-
     end
     puts
 
@@ -83,8 +80,6 @@ class Game
       $map.defeat_enemy
       $map.return_to_menu
     end
-
-   
   end
 
   def game_over

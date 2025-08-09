@@ -1,4 +1,5 @@
 require "./lib/location.rb"
+require "./lib/quest_system.rb"
 
 class Map
   def initialize
@@ -15,6 +16,7 @@ class Map
     @map_grid = Array.new(7) { Array.new(4, "") }
     @map_cords = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     @character_location = 9
+    @visited_locations = []
 
     @locations = {
       "1" => Location.new,
@@ -157,6 +159,17 @@ class Map
   end
 
   def run_location(cord)
+    # Track visited locations for quests
+    unless @visited_locations.include?(cord)
+      @visited_locations << cord
+      QuestSystem.update_quest_progress(:location_visited, "locations")
+      
+      # Special quest progress for castle
+      if @locations["#{cord}"].castle? == true
+        QuestSystem.update_quest_progress(:location_visited, "castle")
+      end
+    end
+    
     @locations["#{cord}"].run
   end
 
